@@ -9,6 +9,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          light: "rgba(11, 123, 135, 1)",
+          dark: "rgba(16, 31, 42, 1)",
+          base:"rgba(16, 62, 71, 1)",
+        },
+        LightGray: "rgba(245, 240, 240, 1)",
+        Error: 'rgba(220, 34, 34, 1)',
+      },
     },
   },
   plugins: [

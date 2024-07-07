@@ -1,7 +1,9 @@
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import ContextProvider from "@/app/lib/ContextProvider";
+import Footer from "@/app/UI/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Solobet",
@@ -11,7 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gradient-radial`}>{children}</body>
+      <ContextProvider>
+        <body className={`${montserrat.className} bg-primary-dark text-LightGray`}>
+          {children}
+          <Footer/>
+        </body>
+      </ContextProvider>
     </html>
   );
 }
