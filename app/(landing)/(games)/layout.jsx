@@ -4,14 +4,18 @@ import Breadcrumb from "@/app/UI/Breadcrumb";
 
 export default function GamesLayout({children}){
     return (
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row border-t-[1px] py-8 border-Grey">
             <MobileSportsMenu/>
-            <SportsMenu/>
+            <div className=" w-1/6">
+                <SportsMenu/>
+            </div>
             <Breadcrumb/>
             <div className="mx-auto md:w-1/2">
                 {children}
             </div>
-            <Betslip/>
+            <div className="hidden md:block w-1/4 mx-auto rounded-full">
+                <Betslip/>
+            </div>
         </div>
     )
 }

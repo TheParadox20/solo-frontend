@@ -30,7 +30,7 @@ export function MobileBottomMenu(){
     let pathname = usePathname();
 
     return(
-        <div className="flex md:hidden bg-primary-base justify-around pt-3 pb-2 fixed bottom-0 w-full">
+        <div className="flex md:hidden bg-primary-base justify-around pt-3 pb-2 fixed bottom-0 w-full z-10">
             {
                 pages.map((page,i) => (
                     <Link href={page.href} key={i} className={`flex flex-col items-center ${pathname===(page.href)?'text-primary-light':'text-LightGray'} `}>
@@ -46,7 +46,7 @@ export function MobileBottomMenu(){
 export function MobileTopMenu(){
     return(
         <div className="block md:hidden">
-            <div className="flex justify-between items-center px-3 py-3 border-b-[1px] mb-4">
+            <div className="flex justify-between items-center px-3 py-3  mb-4">
                 <Logo/>
                 <button onClick={e=>show('mobile_side_menu')} className="icon-[solar--hamburger-menu-outline] w-8 h-8"/>
             </div>
@@ -83,8 +83,8 @@ export function MobileSideMenu(){
     ]
     let pathname = usePathname();
     return(
-        <div id="mobile_side_menu" className="block fixed z-10 top-0 right-0 w-[60vw] translate-x-[60vw] h-[100vh] bg-primary-base md:hidden">
-            <button onClick={e=>hide('mobile_side_menu')} className="w-full text-right mr-2"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+        <div id="mobile_side_menu" className="block fixed z-20 top-0 right-0 w-[60vw] translate-x-[60vw] h-[100vh] bg-primary-base md:hidden">
+            <button onClick={e=>hide('mobile_side_menu')} className="w-full text-right pr-4 mt-2"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
             <div>
                 {
                     pages.map((page,i) => (
@@ -95,7 +95,7 @@ export function MobileSideMenu(){
                     ))
                 }
             </div>
-            <div className="flex justify-around border-t-[1px] p-2 absolute bottom-20 w-full">
+            <div className="flex justify-around border-t-[1px] border-Grey p-2 absolute bottom-20 w-full">
                 <Link href={'/login'}>Log In</Link>
                 <Link href={'/register'}>Join Now</Link>
             </div>
@@ -106,7 +106,7 @@ export function MobileSideMenu(){
 export function TopMenu(){
     let pathname = usePathname();
     return(
-        <div className="hidden md:block bg-transparent py-7 px-2">
+        <header className="hidden md:block bg-primary-dark z-10 py-5 px-4 sticky top-0">
             <div className="flex justify-between items-center">
                 <Logo/>
                 <div className="flex gap-12">
@@ -116,17 +116,17 @@ export function TopMenu(){
                     <Link className={`${pathname==='/account'?'text-primary-light':'text-LightGray'} font-semibold`} href="/account">Account</Link>
                 </div>
                 <div className="flex gap-5">
-                    <Link href={'/login'}>Log In</Link>
-                    <Link href={'/register'}>Join Now</Link>
+                    <Link className="w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" href={'/login'}>Log In</Link>
+                    <Link className="w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light" href={'/register'}>Join Now</Link>
                 </div>
             </div>
-        </div>
+        </header>
     )
 }
 
 export function MobileSportsMenu(){
     return(
-        <div className="flex md:hidden overflow-x-scroll pb-3 mb-5 px-2">
+        <div className="flex md:hidden overflow-x-scroll pt-1 pb-3 mb-5 px-2 sticky top-0 z-10 bg-primary-dark">
             <div className="flex gap-6">
                 {
                     [... new Array(4)].map((_,i) => (
@@ -137,7 +137,7 @@ export function MobileSportsMenu(){
                     ))
                 }
             </div>
-            <div className="border-r-2 mx-8 my-1"/>
+            <div className="border-r-2 border-Grey mx-8 my-1"/>
             <div className="flex gap-6">
                 {
                     [... new Array(5)].map((_,i) => (
@@ -154,12 +154,43 @@ export function MobileSportsMenu(){
 
 export function SportsMenu(){
     return(
-        <div className="hidden md:block bg-transparent">
-            <div className="border-b-[1px]">
+        <div className="hidden md:block bg-primary-dark ml-2 px-4">
+            <div className="border-b-[1px] border-Grey mb-4">
                 <h3 className="text-primary-light font-semibold">POPULAR</h3>
+                {
+                    [... new Array(4)].map((_,i) => (
+                        <Link href={'#'} key={i} className="flex gap-2 items-center my-4">
+                            <span className="icon-[tabler--ball-football] w-8 h-8"/>
+                            <span className="truncate text-sm font-semibold">Premier league</span>
+                        </Link>
+                    ))
+                }
             </div>
             <div>
-                <h3 className="text-primary-light font-semibold">SPORTS</h3>
+                <h3 className="text-primary-light font-semibold mb-3">SPORTS</h3>
+                {
+                    [... new Array(8)].map((_,i) => {
+                        return (
+                            <>
+                            <div className="flex items-center justify-between">
+                                <Link href={'#'} key={i} className="flex gap-2 items-center my-2">
+                                    <span className="icon-[tabler--ball-football] w-8 h-8"/>
+                                    <span className="truncate text-sm font-semibold">Football</span>
+                                </Link>
+                                <button className={`${i==0?'icon-[ep--arrow-up]':'icon-[ep--arrow-down]'} w-6 h-6`} onClick={e=>console.log('Dropdown Clicked')}/>
+                            </div>
+                            {
+                                i==0 &&
+                                [... new Array(4)].map((_,i) => (
+                                    <Link href={'#'} key={i} className="flex gap-2 items-center my-4 pl-10">
+                                        <span className="truncate text-sm">Premier league</span>
+                                    </Link>
+                                ))
+                            }
+                            </>
+                        )
+                    })
+                }
             </div>
         </div>
     )
