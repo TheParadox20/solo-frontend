@@ -3,7 +3,7 @@ import Logo from "@/app/UI/Logo"
 
 export default function Footer(){
     return(
-        <footer className="border-t-[1px] border-Grey px-4 py-4 my-8">
+        <footer className="border-t-[1px] border-Grey px-4 py-4 mt-8">
             <div className="flex flex-col md:flex-row gap-y-6 justify-between py-6">
                 <div className="md:w-1/4">
                     <Logo/>

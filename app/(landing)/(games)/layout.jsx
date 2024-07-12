@@ -1,6 +1,5 @@
 import { SportsMenu, MobileSportsMenu } from "@/app/UI/Menus";
 import Betslip from "@/app/UI/Betslip";
-import Breadcrumb from "@/app/UI/Breadcrumb";
 
 export default function GamesLayout({children}){
     return (
@@ -9,7 +8,6 @@ export default function GamesLayout({children}){
             <div className=" w-1/6">
                 <SportsMenu/>
             </div>
-            <Breadcrumb/>
             <div className="mx-auto md:w-1/2">
                 {children}
             </div>
