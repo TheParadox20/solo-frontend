@@ -44,7 +44,7 @@ let sports = [
         categories:['NBA','NBA Playoffs','NBA Futures','NBA Props']
     },
     {
-        icon:'icon-[solar--rugby-outline]',
+        icon:'icon-[solar--rugby-outline]', 
         sport:'Rugby',
         categories:['Six Nations','Rugby World Cup','Super Rugby','The Rugby Championship']
     },
@@ -128,7 +128,7 @@ export function MobileBottomMenu(){
         <div className="flex md:hidden bg-primary-base justify-around pt-3 pb-2 fixed bottom-0 w-full z-10">
             {
                 pages.map((page,i) => (
-                    <Link href={page.href} key={i} className={`flex flex-col items-center ${pathname===(page.href)?'text-primary-light':'text-LightGray'} `}>
+                    <Link href={page.href} key={i} className={`flex flex-col items-center ${('/'===page.href&&pathname.length==1)?'text-primary-light':page.href!=='/'&&pathname.includes(page.href)?'text-primary-light':'text-LightGray'} `}>
                         <div className=""><span className={`${page.icon} w-7 h-7`}/></div>
                         <span className="truncate text-xs font-bold text-center">{page.text}</span>
                     </Link>
@@ -141,7 +141,7 @@ export function MobileBottomMenu(){
 export function MobileTopMenu(){
     return(
         <div className="block md:hidden">
-            <div className="flex justify-between items-center px-3 py-3  mb-4">
+            <div className="flex justify-between items-center px-3 py-3  mb-1">
                 <Logo/>
                 <button onClick={e=>show('mobile_side_menu')} className="icon-[solar--hamburger-menu-outline] w-8 h-8"/>
             </div>
@@ -208,7 +208,7 @@ export function TopMenu(){
                     <Link className={`${pathname==='/'?'text-primary-light':'text-LightGray'} font-semibold`} href="/">Home</Link>
                     <Link className={`${pathname.includes('/sports')?'text-primary-light':'text-LightGray'} font-semibold`} href="/sports">Sports</Link>
                     <Link className={`${pathname==='/bets'?'text-primary-light':'text-LightGray'} font-semibold`} href="/bets">My Bets</Link>
-                    <Link className={`${pathname==='/account'?'text-primary-light':'text-LightGray'} font-semibold`} href="/account">Account</Link>
+                    <Link className={`${pathname.includes('/account')?'text-primary-light':'text-LightGray'} font-semibold`} href="/account">Account</Link>
                 </div>
                 <div className="flex gap-5">
                     <Link className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" href={'/login'}>Log In</Link>
@@ -223,7 +223,7 @@ export function MobileSportsMenu(){
     let params = useSearchParams();
 
     return(
-        <div className="flex md:hidden overflow-x-scroll pt-1 pb-3 mb-5 px-2 sticky top-0 z-30 bg-primary-dark">
+        <div className="flex md:hidden overflow-x-scroll pt-2 pb-3 mb-5 px-2 sticky top-0 z-30 bg-primary-dark">
             <div className="flex gap-6">
                 {
                     popular.map((category,i) => (
@@ -254,12 +254,12 @@ export function SportsMenu(){
     let params = useSearchParams();
 
     return(
-        <div className="hidden md:block bg-primary-dark ml-2 px-4 2xl:pr-20">
+        <div className="hidden md:block bg-primary-dark ml-2 px-4 2xl:pr-16">
             <div className="border-b-[1px] border-Grey mb-4">
                 <h3 className="text-primary-light text-base font-semibold">POPULAR</h3>
                 {
                     popular.map((category,i) => (
-                        <Link href={`/sports?sport=${category.sport}&category=${category.text}`} key={i} className={`flex gap-2 items-center my-1 p-2 rounded-lg ${params.get('category')==category.text?'bg-primary-base':null}`}>
+                        <Link href={`/sports?sport=${category.sport}&category=${category.text}`} key={i} className={`flex gap-2 items-center p-2 rounded-lg ${params.get('category')==category.text?'bg-primary-base':null}`}>
                             <span className={`${category.icon} w-6 h-6 2xl:w-8 2xl:h-8`}/>
                             <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{category.text}</span>
                         </Link>
@@ -272,8 +272,8 @@ export function SportsMenu(){
                     sports.map((sport,i) => {
                         return (
                             <>
-                            <div key={i} className="flex items-center justify-between" onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
-                                <Link href={`/sports?sport=${sport.sport}${sport.categories.length>0?`&category=${sport.categories[0]}`:''}`} key={i} className="flex gap-2 items-center my-2">
+                            <div key={i} className={`flex items-center justify-between px-2 rounded-lg 2xl:my-1 ${(params.get('category')==null&&params.get('sport')==sport.sport)?'bg-primary-base':null}`} onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
+                                <Link href={`/sports?sport=${sport.sport}`} key={i} className={`flex gap-2 items-center my-2`}>
                                     <span className={`${sport.icon} w-6 h-6 2xl:w-8 2xl:h-8`}/>
                                     <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{sport.sport}</span>
                                 </Link>

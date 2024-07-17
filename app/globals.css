@@ -5,7 +5,8 @@
 /* Style scroll bar */
 .large-scroll {
   scrollbar-width: thin;
-  scrollbar-color: black grey;
+  scrollbar-color: rgba(16, 62, 71, 1) transparent;
+  scroll-margin: 2.75rem;
 }
 .no-scroll{
   scrollbar-width: none;

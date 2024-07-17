@@ -24,3 +24,14 @@ export function show(id, duration = 300, easing = 'ease-in-out') {
 export function isVisible(id){
     return document.getElementById(id).style.display === "block";
 }
+
+export function toggle(id){
+    if(isVisible(id)) nowYouDont(id);
+    else nowYouSee(id);
+}
+export function nowYouDont(id){
+    document.getElementById(id).style.display = "none";
+}
+export function nowYouSee(id){
+    document.getElementById(id).style.display = "block";
+}

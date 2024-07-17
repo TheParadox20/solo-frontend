@@ -17,13 +17,13 @@ export default function Input({type, value, setValue, placeholder, disabled, nam
         }
     },[])
     return (
-        <div id={name.replace(/\s+/g, '').toLowerCase()} className={`border-2 flex rounded-md focus-within:border-primary focus-within:text-primary py-2 pr-4 relative h-fit w-full ${error?'text-warning border-warning':'text-gray-500'} bg-primary-base`}>
-            <span className="text-xs absolute -top-2 left-2 bg-white px-2 focus-within:text-primary font-semibold">{name} {required ? '*' : ''}</span>
+        <div id={name.replace(/\s+/g, '').toLowerCase()} className={`border-2 border-Grey flex rounded-md focus-within:border-primary-light focus-within:text-Grey py-2 pr-4 relative h-fit w-full ${error?'text-warning border-warning':'text-gray-500'} bg-primary-base`}>
+            <span className="text-xs absolute -top-2 left-2 px-2 text-white font-semibold">{name} {required ? '*' : ''}</span>
             {
                 type=='textarea'?
                 <textarea required disabled={disabled} className={`px-4 w-full h-48 ${disabled?'text-black':'text-gray-600'}`} type="text" placeholder={placeholder} value={value} onChange={e=>setValue(e.target.value)} />
                 :
-                <input disabled={disabled} className={`px-4 w-full ${disabled ? 'text-black' : 'text-gray-600'}`} type={show?'password':type=='password'?'text':type} placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} />
+                <input disabled={disabled} className={`px-4 w-full ${disabled ? 'text-black' : 'text-white'}`} type={show?'password':type=='password'?'text':type} placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} />
             }
             {
                 type=='password'?

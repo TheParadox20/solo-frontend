@@ -1,7 +1,11 @@
 'use client'
+import { placeE } from "@/app/lib/trigger";
+
 export default function Game({data}){
-    let place = (e)=>{
-        e.preventDefault();
+    let defaultStake = 20;
+    let odd = (stakes, pot)=>{
+        let award = (defaultStake/stakes)*pot+defaultStake;
+        return (award/defaultStake).toFixed(2);
     }
     return(
         <div className="border-b-[1px] border-Grey py-2">
@@ -28,8 +32,8 @@ export default function Game({data}){
                         data.outcomes.map((outcome,i)=>{
                             return(
                                 <div key={i} className={`flex flex-col gap-2 justify-center items-center ${data.outcomes.length==2?'w-1/2':'w-1/3'}`}>
-                                    <div className="">{outcome.name}</div>
-                                    <button className="bg-primary-light w-full rounded-md py-2 hover:scale-105 font-semibold" onClick={e=>place(e)}>{outcome.odd}</button>
+                                    <div className="truncate">{outcome.name}</div>
+                                    <button className="bg-primary-light w-full rounded-md py-2 hover:scale-105 font-semibold" onClick={e=>placeE(data)} onTouchStart={e=>placeE(data)} >{odd(outcome.stake,(data.stakes-outcome.stake))}</button>
                                     <div className="text-sm lg:text-xs 2xl:text-sm">{outcome.users.toLocaleString()}</div>
                                 </div>
                             )

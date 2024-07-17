@@ -1,12 +1,8 @@
 export function placeE(game){
-    window.dispatchEvent(new CustomEvent("place", { detail: {state:state, type:type, message:message}}));
+    window.dispatchEvent(new CustomEvent("place", { detail: {game}}));
 }
 
 export function popupE(state, type, message){
-    window.dispatchEvent(new CustomEvent("popup", { detail: {state:state, type:type, message:message}}));
-}
-
-export function promiseE(state, type, message){
     window.dispatchEvent(new CustomEvent("popup", { detail: {state:state, type:type, message:message}}));
 }
 

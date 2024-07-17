@@ -7,25 +7,26 @@ export default function Page() {
     category: "Premier league",
     options: ["Manchester United", "Arsenal"],
     outcomes:[
-      {name:"Man. United", odd:2.5, users:3},
-      {name:"Draw", odd:1.5, users:1},
-      {name:"Arsenal", odd:3.5, users:2},
+      {name:"Man. United", stake:2500, users:38},
+      {name:"Draw", stake:1950, users:21},
+      {name:"Arsenal", stake:3705, users:64},
     ],
     date: "Sat 12th Jun",
     time: "15:00 pm",
-    stakes: 10345,
+    stakes: 7955,
   };
   let basketball = {
     category: "NBA",
     options: ["Dallas Mavericks", "Boston Celtics"],
     outcomes:[
-      {name:"Mavericks", odd:1.5, users:3},
-      {name:"Celtics", odd:2.5, users:2},
+      {name:"Mavericks", stake:1085, users:3},
+      {name:"Celtics", stake:2035, users:2},
     ],
     date: "Sat 12th Jun",
     time: "15:00 pm",
-    stakes: 10345,
+    stakes: 3120,
   };
+
   return (
     <div className="lg:mt-7">
         <Hero/>
