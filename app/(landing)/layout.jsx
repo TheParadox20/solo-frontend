@@ -11,7 +11,7 @@ export default function LandingLayout({children}) {
         <MobileSideMenu/>
         </>
           {children}
-        <div className="md:hidden sticky bottom-0"><div id="place" className="hidden sticky bottom-0 mb-4 mx-auto bg-primary-dark rounded-lg pb-2"><Place/></div></div>
+        <div className="md:hidden sticky bottom-0"><div id="placeMobile" className="hidden sticky bottom-0 mb-4 mx-auto bg-primary-dark rounded-lg pb-2"><Place/></div></div>
         <MobileBottomMenu/>
       </div>
     );

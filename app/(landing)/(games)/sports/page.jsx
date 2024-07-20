@@ -8,11 +8,11 @@ export default function Page() {
     'Saturday, 12th June 2024':[
       {
         category: "Premier league",
-        options: ["Brentford", "Manchester City"],
+        options: ["Brentford", "Chelsea"],
         outcomes:[
           {name:"Brentford", stake:2500, users:38},
           {name:"Draw", stake:1950, users:21},
-          {name:"Man. City", stake:10705, users:164},
+          {name:"Chelsea", stake:10705, users:164},
         ],
         date: "Sat 12th Jun",
         time: "15:00 pm",
@@ -24,13 +24,13 @@ export default function Page() {
         category: "Premier league",
         options: ["Manchester United", "Arsenal"],
         outcomes:[
-          {name:"Man. United", stake:2500, users:38},
-          {name:"Draw", stake:1950, users:21},
-          {name:"Arsenal", stake:3705, users:64},
+          {name:"Man. United", stake:90, users:2},
+          {name:"Draw", stake:30, users:2},
+          {name:"Arsenal", stake:60, users:3},
         ],
-        date: "Sat 12th Jun",
+        date: "Sat 13th Jun",
         time: "15:00 pm",
-        stakes: 7955,
+        stakes: 180,
       }
     ],
     'Monday, 14th June 2024':[
@@ -42,7 +42,7 @@ export default function Page() {
           {name:"Draw", stake:1950, users:21},
           {name:"Arsenal", stake:3705, users:64},
         ],
-        date: "Sat 12th Jun",
+        date: "Sat 14th Jun",
         time: "15:00 pm",
         stakes: 7955,
       }

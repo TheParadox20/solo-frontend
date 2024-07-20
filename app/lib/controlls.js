@@ -30,8 +30,19 @@ export function toggle(id){
     else nowYouSee(id);
 }
 export function nowYouDont(id){
-    document.getElementById(id).style.display = "none";
+    if(typeof(id) === 'string') document.getElementById(id).style.display = "none";
+    if(typeof(id) === 'object'){
+        for(let i of id){
+            document.getElementById(i).style.display = "none";
+        }
+    }
 }
 export function nowYouSee(id){
-    document.getElementById(id).style.display = "block";
+    if(typeof(id) === 'string') document.getElementById(id).style.display = "block";
+    if(typeof(id) === 'object'){
+        for(let i of id){
+            document.getElementById(i).style.display = "block";
+        }
+    }
+    
 }

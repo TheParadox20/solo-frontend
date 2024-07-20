@@ -8,7 +8,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Solobet",
-  description: "Betting exchange",
+  description: "Kenya\'s first etting exchange",
 };
 
 export default function RootLayout({ children }) {

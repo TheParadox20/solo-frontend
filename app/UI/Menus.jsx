@@ -255,7 +255,7 @@ export function SportsMenu(){
 
     return(
         <div className="hidden md:block bg-primary-dark ml-2 px-4 2xl:pr-16">
-            <div className="border-b-[1px] border-Grey mb-4">
+            <div className="border-b-[1px] border-Grey pb-2 mb-4">
                 <h3 className="text-primary-light text-base font-semibold">POPULAR</h3>
                 {
                     popular.map((category,i) => (
