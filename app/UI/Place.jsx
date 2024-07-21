@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link";
 import Input from "@/app/UI/Input"
 import { nowYouDont } from "@/app/lib/controlls";
@@ -7,7 +7,6 @@ import { nowYouDont } from "@/app/lib/controlls";
 export default function Place(){
     let defaultStake = 20;
     let [amount, setAmount] = useState(defaultStake);
-    let [award, setAward] = useState(0);
     let [match, setMatch] = useState('');
     let [pot, setPot] = useState(0);
     let [users, setUsers] = useState(0);
@@ -15,19 +14,23 @@ export default function Place(){
     let [market, setMarket] = useState('WIN');
     let [option, setOption] = useState('');
 
+    let awardRef = useRef();
+
     useEffect(()=>{
         window.addEventListener('place', e=>handler(e))
         return ()=>window.removeEventListener('place', e=>handler(e))
     },[])
 
     useEffect(()=>{
-        setAward(((amount/(stakes+amount))*pot+amount))
+        if(amount == NaN) setAmount(0)
+        const newAward = ((amount / (stakes + amount)) * pot + amount);
+        if (newAward == NaN) awardRef.current.innerText = `KES ${0.00}`;
+        else awardRef.current.innerText = `KES ${newAward.toFixed(2)}`;
     },[amount])
 
     let handler = e => {
-        console.log(`Place: `,e.detail);
         setMatch(e.detail.game.match)
-        setAward((amount/(e.detail.game.choice.stake+amount))*e.detail.game.pot+amount)
+        awardRef.current.innerText = `KES ${((amount/(e.detail.game.choice.stake+amount))*e.detail.game.pot+amount).toFixed(2)}`;
         setPot(e.detail.game.pot)
         setUsers(e.detail.game.choice.users)
         setStakes(e.detail.game.choice.stake)
@@ -51,7 +54,7 @@ export default function Place(){
             </div>
             <div className="mb-4">
                 <Input value={amount} setValue={setAmount} placeholder={'Enter Stake'} type={'number'} name={'Stake (KES)'}/>
-                <p className="my-3">Possible Win: <span className="font-bold text-Success">KES {award}</span></p>
+                <p className="my-3">Possible Win: <span ref={awardRef} className="font-bold text-Success"></span></p>
                 <div className="flex justify-between">
                     <p className="flex-grow border-r-[1px] border-Grey">Total Stakes: <span className="font-bold">KES {stakes.toLocaleString()}</span></p>
                     <p className="flex-grow text-right">Users: <span className="font-bold"> {users.toLocaleString()}</span></p>

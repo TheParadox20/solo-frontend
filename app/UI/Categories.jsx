@@ -12,7 +12,7 @@ export default function Categories(){
     return(
         <>
         <button className="text-xl 2xl:text-2xl 2xl:my-5 font-bold flex items-center w-fit justify-between gap-4 relative" onClick={e=>toggle('categoriesDropDown')}>{category?category:'All'} <span className="icon-[ep--arrow-down] w-6 h-6"/></button>
-        <div id="categoriesDropDown" className="bg-primary-base shadow-lg shadow-primary-light w-52 max-h-80 md:max-h-96 overflow-y-scroll absolute rounded-lg px-1 py-2 hidden">
+        <div id="categoriesDropDown" className="large-scroll bg-primary-base shadow-lg shadow-primary-light w-52 max-h-80 md:max-h-96 overflow-y-scroll absolute rounded-lg px-1 py-2 hidden">
             {
                 sport?
                 categories.map((cat,i)=>(<Link key={i} href={`/sports?sport=${sport}&category=${cat}`} className={`block text-sm p-2 rounded-md ${category==cat?'bg-primary-light':null}`} onClick={e=>toggle('categoriesDropDown')}>{cat}</Link>))

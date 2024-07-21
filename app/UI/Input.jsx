@@ -23,7 +23,7 @@ export default function Input({type, value, setValue, placeholder, disabled, nam
                 type=='textarea'?
                 <textarea required disabled={disabled} className={`px-4 w-full h-48 ${disabled?'text-black':'text-gray-600'}`} type="text" placeholder={placeholder} value={value} onChange={e=>setValue(e.target.value)} />
                 :
-                <input disabled={disabled} className={`px-4 w-full ${disabled ? 'text-black' : 'text-white'}`} type={show?'password':type=='password'?'text':type} placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} />
+                <input disabled={disabled} className={`px-4 w-full ${disabled ? 'text-black' : 'text-white'}`} type={show?'password':type=='password'?'text':type} placeholder={placeholder} value={value} onChange={e => {type=='number'?setValue(parseFloat(e.target.value)):setValue(e.target.value)}} />
             }
             {
                 type=='password'?
