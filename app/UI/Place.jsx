@@ -7,11 +7,9 @@ import { nowYouDont } from "@/app/lib/controlls";
 export default function Place(){
     let defaultStake = 20;
     let [amount, setAmount] = useState(defaultStake);
-    let [game, setGame] = useState(null);
     let [award, setAward] = useState(0);
     let [match, setMatch] = useState('');
     let [pot, setPot] = useState(0);
-    let [win, setWin] = useState(0);
     let [users, setUsers] = useState(0);
     let [stakes, setStakes] = useState(0);
     let [market, setMarket] = useState('WIN');
@@ -23,16 +21,13 @@ export default function Place(){
     },[])
 
     useEffect(()=>{
-        let award = ((amount/stakes)*pot+amount)
-        console.log(`Amount: `,award);
-        setAward(award)
+        setAward(((amount/(stakes+amount))*pot+amount))
     },[amount])
 
     let handler = e => {
         console.log(`Place: `,e.detail);
         setMatch(e.detail.game.match)
-        setAward((amount/e.detail.game.choice.stake)*e.detail.game.pot+amount)
-        setGame(e.detail.game.game)
+        setAward((amount/(e.detail.game.choice.stake+amount))*e.detail.game.pot+amount)
         setPot(e.detail.game.pot)
         setUsers(e.detail.game.choice.users)
         setStakes(e.detail.game.choice.stake)

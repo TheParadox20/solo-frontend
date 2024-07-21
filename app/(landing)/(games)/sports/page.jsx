@@ -36,15 +36,15 @@ export default function Page() {
     'Monday, 14th June 2024':[
       {
         category: "Premier league",
-        options: ["Manchester United", "Arsenal"],
+        options: ["Liverpool", "Ipswich"],
         outcomes:[
-          {name:"Man. United", stake:2500, users:38},
-          {name:"Draw", stake:1950, users:21},
-          {name:"Arsenal", stake:3705, users:64},
+          {name:"Liverpool", stake:50, users:3},
+          {name:"Draw", stake:70, users:4},
+          {name:"Ipswich", stake:20, users:1},
         ],
         date: "Sat 14th Jun",
         time: "15:00 pm",
-        stakes: 7955,
+        stakes: 140,
       }
     ]
   }
