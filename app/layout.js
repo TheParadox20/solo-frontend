@@ -15,12 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="large-scroll">
       <Suspense>
-      <ContextProvider>
         <body className={`${montserrat.className} bg-primary-dark text-LightGray lg:text-xs 2xl:text-base`}>
+          <ContextProvider>
           {children}
           <Footer/>
+          </ContextProvider>
         </body>
-      </ContextProvider>
       </Suspense>
     </html>
   );

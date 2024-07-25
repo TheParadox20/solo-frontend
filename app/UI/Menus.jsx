@@ -180,25 +180,25 @@ export function SportsMenu(){
                 {
                     Sports.map((sport,i) => {
                         return (
-                            <>
-                            <div key={i} className={`flex items-center justify-between px-2 rounded-lg 2xl:my-1 ${(params.get('category')==null&&params.get('sport')==sport.sport)?'bg-primary-base':null}`} onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
-                                <Link href={`/sports?sport=${sport.sport}`} key={i} className={`flex gap-2 items-center my-2`}>
-                                    <span className={`${sport.icon} w-6 h-6 2xl:w-8 2xl:h-8`}/>
-                                    <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{sport.sport}</span>
-                                </Link>
+                            <div key={i}>
+                                <div className={`flex items-center justify-between px-2 rounded-lg 2xl:my-1 ${(params.get('category')==null&&params.get('sport')==sport.sport)?'bg-primary-base':null}`} onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
+                                    <Link href={`/sports?sport=${sport.sport}`} className={`flex gap-2 items-center my-2`}>
+                                        <span className={`${sport.icon} w-6 h-6 2xl:w-8 2xl:h-8`}/>
+                                        <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{sport.sport}</span>
+                                    </Link>
+                                    {
+                                        sport.categories.length>0 && <button className={`${i==activeSport?'icon-[ep--arrow-up]':'icon-[ep--arrow-down]'} w-4 h-4 2xl:w-6 2xl:h-6`} />
+                                    }
+                                </div>
                                 {
-                                    sport.categories.length>0 && <button className={`${i==activeSport?'icon-[ep--arrow-up]':'icon-[ep--arrow-down]'} w-4 h-4 2xl:w-6 2xl:h-6`} />
+                                    (activeSport!=null && i==activeSport) &&
+                                    sports[activeSport].categories.map((category,i) => (
+                                        <Link href={`/sports?sport=${sport.sport}&category=${category}`} key={i} className={`flex gap-2 items-center my-1 ml-10 p-2 rounded-lg ${params.get('category')==category?'bg-primary-base':null}`}>
+                                            <span className="truncate lg:text-xs 2xl:text-sm">{category}</span>
+                                        </Link>
+                                    ))
                                 }
                             </div>
-                            {
-                                (activeSport!=null && i==activeSport) &&
-                                sports[activeSport].categories.map((category,i) => (
-                                    <Link href={`/sports?sport=${sport.sport}&category=${category}`} key={i} className={`flex gap-2 items-center my-1 ml-10 p-2 rounded-lg ${params.get('category')==category?'bg-primary-base':null}`}>
-                                        <span className="truncate lg:text-xs 2xl:text-sm">{category}</span>
-                                    </Link>
-                                ))
-                            }
-                            </>
                         )
                     })
                 }

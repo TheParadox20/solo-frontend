@@ -17,17 +17,15 @@ export default function Page() {
         {
           Object.keys(popular).map((sport,i)=>{
             return (
-              <>
-              <div className="flex items-center font-bold text-lg gap-2 2xl:text-2xl mb-4"><span className={`${popular[sport].icon} w-7 h-7`}/>Upcoming {sport}</div>
-              <div key={i} className="bg-primary-base mb-8 px-5 md:px-8 pb-10 pt-2 rounded-lg">
-                {
-                popular[sport].data.map((match,i)=>{
-                return <div key={i} className="my-4"><Game data={match}/></div>
-                })
-                }
-                <Link href={`/sports?sport=${sport}`} className="w-full flex items-center justify-center text-center font-semibold underline underline-offset-4">View All Upcoming {sport} <span className="icon-[basil--arrow-right-outline] w-7 h-7"/></Link>
+              <div key={i}>
+                <div className="flex items-center font-bold text-lg gap-2 2xl:text-2xl mb-4"><span className={`${popular[sport].icon} w-7 h-7`}/>Upcoming {sport}</div>
+                <div className="bg-primary-base mb-8 px-5 md:px-8 pb-10 pt-2 rounded-lg">
+                  {
+                    popular[sport].data.map((match,i)=>(<div key={i} className="my-4"><Game data={match}/></div>))
+                  }
+                  <Link href={`/sports?sport=${sport}`} className="w-full flex items-center justify-center text-center font-semibold underline underline-offset-4">View All Upcoming {sport} <span className="icon-[basil--arrow-right-outline] w-7 h-7"/></Link>
+                </div>
               </div>
-              </>
             )
           })
         }
