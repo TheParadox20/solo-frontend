@@ -2,7 +2,7 @@
 import { createContext } from "react";
 import useSWR from "swr";
 import { fetcher } from "./data";
-import Spinner from "@/app/UI/Spinner";
+import Spinner from "@/app/UI/body/Spinner";
 
 export let Context = createContext();
 

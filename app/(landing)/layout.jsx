@@ -1,6 +1,6 @@
 'use client'
-import { TopMenu, MobileTopMenu, MobileBottomMenu, MobileSideMenu } from "@/app/UI/Menus";
-import Place from "@/app/UI/Place";
+import { TopMenu, MobileTopMenu, MobileBottomMenu, MobileSideMenu } from "@/app/UI/body/Menus";
+import Place from "@/app/UI/games/Place";
 
 export default function LandingLayout({children}) {
     return (

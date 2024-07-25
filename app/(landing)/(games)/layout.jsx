@@ -1,6 +1,6 @@
-import { SportsMenu, MobileSportsMenu } from "@/app/UI/Menus";
-import Betslip from "@/app/UI/Betslip";
-import Place from "@/app/UI/Place";
+import { SportsMenu, MobileSportsMenu } from "@/app/UI/body/Menus";
+import Betslip from "@/app/UI/games/Betslip";
+import Place from "@/app/UI/games/Place";
 
 export default function GamesLayout({children}){
     return (

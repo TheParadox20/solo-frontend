@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Logo from "@/app/UI/Logo"
+import Logo from "@/app/UI/body/Logo"
 
 export default function Footer(){
     return(
@@ -16,9 +16,8 @@ export default function Footer(){
                     <div>
                         <h6 className="mb-4 font-bold">Legal & Policy</h6>
                         <Link className="block text-sm mb-3" href={'/terms'}>Terms & Conditions</Link>
-                        <Link className="block text-sm mb-3" href={'/privacy'}>Privacy Policy</Link>
+                        <Link className="block text-sm mb-3" href={'/policy'}>Privacy Policy</Link>
                         <Link className="block text-sm mb-3" href={'/cookies'}>Cookie policy</Link>
-                        <Link className="block text-sm mb-3" href={'/responsible-gaming'}>Responsible Gaming</Link>
                     </div>
                     <div>
                         <h6 className="mb-4 font-bold">Contact Us</h6>

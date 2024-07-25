@@ -2,7 +2,7 @@ import {  Montserrat } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import ContextProvider from "@/app/lib/ContextProvider";
-import Footer from "@/app/UI/Footer";
+import Footer from "@/app/UI/body/Footer";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 

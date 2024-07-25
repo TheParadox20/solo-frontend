@@ -2,10 +2,10 @@
 import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { fetcher } from "@/app/lib/data";
-import Spinner from "@/app/UI/Spinner";
-import Breadcrumb from "@/app/UI/Breadcrumb";
-import Categories from "@/app/UI/Categories";
-import Game from "@/app/UI/Game";
+import Spinner from "@/app/UI/body/Spinner";
+import Breadcrumb from "@/app/UI/games/Breadcrumb";
+import Categories from "@/app/UI/games/Categories";
+import Game from "@/app/UI/games/Game";
 
 export default function Page() {
   let params = useSearchParams();

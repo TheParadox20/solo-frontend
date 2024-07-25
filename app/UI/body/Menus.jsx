@@ -3,8 +3,9 @@ import { useState, useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation";
-import Logo from "@/app/UI/Logo";
+import Logo from "@/app/UI/body/Logo";
 import { hide, show } from "@/app/lib/controlls";
+import SportIcon from "@/app/UI/SportsIcon";
 
 export function MobileBottomMenu(){
     let pathname = usePathname();
@@ -136,7 +137,7 @@ export function MobileSportsMenu(){
                 {
                     Popular.map((category,i) => (
                         <Link href={`/sports?sport=${category.sport}&category=${category.text}`} key={i} className={`flex flex-col w-12 text-center`}>
-                            <div className={`${params.get('category')==category.text?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><span className={`${category.icon} w-8 h-8`}/></div>
+                            <div className={`${params.get('category')==category.text?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><SportIcon sport={category.sport} classname={'w-8 h-8'}/></div>
                             <span className="truncate text-xs font-semibold">{category.text}</span>
                         </Link>
                     ))
@@ -147,7 +148,7 @@ export function MobileSportsMenu(){
                 {
                     Sports.map((sport,i) => (
                         <Link href={`/sports?sport=${sport.sport}`} key={i} className={`flex flex-col w-12 ${params.get('sport')==sport.sport?'bg-primary-light':null}`}>
-                            <div className={`${params.get('sport')==sport.sport?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><span className={`${sport.icon} w-8 h-8`}/></div>
+                            <div className={`${params.get('sport')==sport.sport?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><SportIcon sport={sport.sport} classname={'w-8 h-8'}/></div>
                             <span className="truncate text-xs font-semibold text-center">{sport.sport}</span>
                         </Link>
                     ))
@@ -169,7 +170,7 @@ export function SportsMenu(){
                 {
                     Popular.map((category,i) => (
                         <Link href={`/sports?sport=${category.sport}&category=${category.text}`} key={i} className={`flex gap-2 items-center p-2 rounded-lg ${params.get('category')==category.text?'bg-primary-base':null}`}>
-                            <span className={`${category.icon} w-6 h-6 2xl:w-8 2xl:h-8`}/>
+                            <SportIcon sport={category.sport} classname={'w-6 h-6 2xl:w-8 2xl:h-8'}/>
                             <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{category.text}</span>
                         </Link>
                     ))
@@ -183,7 +184,7 @@ export function SportsMenu(){
                             <div key={i}>
                                 <div className={`flex items-center justify-between px-2 rounded-lg 2xl:my-1 ${(params.get('category')==null&&params.get('sport')==sport.sport)?'bg-primary-base':null}`} onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
                                     <Link href={`/sports?sport=${sport.sport}`} className={`flex gap-2 items-center my-2`}>
-                                        <span className={`${sport.icon} w-6 h-6 2xl:w-8 2xl:h-8`}/>
+                                        <SportIcon sport={sport.sport} classname={'w-6 h-6 2xl:w-8 2xl:h-8'}/>
                                         <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{sport.sport}</span>
                                     </Link>
                                     {
@@ -192,7 +193,7 @@ export function SportsMenu(){
                                 </div>
                                 {
                                     (activeSport!=null && i==activeSport) &&
-                                    sports[activeSport].categories.map((category,i) => (
+                                    Sports[activeSport].categories.map((category,i) => (
                                         <Link href={`/sports?sport=${sport.sport}&category=${category}`} key={i} className={`flex gap-2 items-center my-1 ml-10 p-2 rounded-lg ${params.get('category')==category?'bg-primary-base':null}`}>
                                             <span className="truncate lg:text-xs 2xl:text-sm">{category}</span>
                                         </Link>
