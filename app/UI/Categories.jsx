@@ -3,11 +3,10 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { toggle } from "@/app/lib/controlls";
 
-export default function Categories(){
+export default function Categories({categories}){
     let params = useSearchParams();
     let category = params.get('category');
     let sport = params.get('sport');
-    let categories = ['Premier League','Champions League','La Liga','Serie A','Bundesliga','Ligue 1']
     let sports = ['Football','Basketball','Tennis','Rugby','Cricket','Volleyball', 'Baseball', 'Ice Hockey', 'Table tennis', 'Boxing', 'Darts', 'Water polo', 'eSoccer']
     return(
         <>

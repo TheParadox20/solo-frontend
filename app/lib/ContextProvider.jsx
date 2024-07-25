@@ -1,14 +1,19 @@
 'use client'
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import useSWR from "swr";
+import { fetcher } from "./data";
+import Spinner from "@/app/UI/Spinner";
 
 export let Context = createContext();
 
 export default function ContextProvider({ children }) {
-    let User = useState({});
-    let Signup = useState({});
-    let Profile = useState({});
+    let { data, error, isLoading } = useSWR(['/menu',{}], fetcher);
+    if(isLoading) return <Spinner full={true}/>
+    if(error) return <p>Error fetching menu</p>
+    let Popular = data.Popular
+    let Sports = data.Sports
     return(
-        <Context.Provider value={{User, Signup, Profile}}>
+        <Context.Provider value={{Popular, Sports}}>
         {children}
         </Context.Provider>
     )

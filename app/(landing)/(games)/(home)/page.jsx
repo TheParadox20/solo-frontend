@@ -1,54 +1,36 @@
+'use client'
 import Link from "next/link";
+import useSWR from "swr";
+import { fetcher } from "@/app/lib/data";
+import Spinner from "@/app/UI/Spinner";
 import Hero from "@/app/UI/Hero";
 import Game from "@/app/UI/Game";
 
 export default function Page() {
-  let football = {
-    category: "Premier league",
-    options: ["Manchester United", "Arsenal"],
-    outcomes:[
-      {name:"Man. United", stake:2500, users:38},
-      {name:"Draw", stake:1950, users:21},
-      {name:"Arsenal", stake:3705, users:64},
-    ],
-    date: "Sat 12th Jun",
-    time: "15:00 pm",
-    stakes: 7955,
-  };
-  let basketball = {
-    category: "NBA",
-    options: ["Dallas Mavericks", "Boston Celtics"],
-    outcomes:[
-      {name:"Mavericks", stake:1085, users:3},
-      {name:"Celtics", stake:2035, users:2},
-    ],
-    date: "Sat 12th Jun",
-    time: "15:00 pm",
-    stakes: 3120,
-  };
+  let { data:popular, error, isLoading } = useSWR(['/home',{}], fetcher);
 
+  if(isLoading) return <Spinner full={false}/>
+  if(error) return <p>Error fetching games</p>
   return (
     <div className="lg:mt-7">
         <Hero/>
-        <div className="flex items-center font-bold text-lg gap-2 2xl:text-2xl mb-4"><span className="icon-[tabler--ball-football] w-7 h-7"/>Upcoming Football</div>
-        <div className="bg-primary-base mb-8 px-5 md:px-8 pb-10 pt-2 rounded-lg">
-          {
-            [... new Array(3)].map((_,i)=>{
-              return <div key={i} className="my-4"><Game data={football}/></div>
-            })
-          }
-          <Link href={'/sports'} className="w-full flex items-center justify-center text-center font-semibold underline underline-offset-4">View All Upcoming Football <span className="icon-[basil--arrow-right-outline] w-7 h-7"/></Link>
-        </div>
-
-        <div className="flex items-center font-bold text-lg gap-2 2xl:text-2xl mb-4"><span className="icon-[ph--basketball] w-7 h-7"/>Upcoming Basketball</div>
-        <div className="bg-primary-base mb-8 px-5 md:px-8 pb-10 pt-2 rounded-lg">
-          {
-            [... new Array(3)].map((_,i)=>{
-              return <div key={i} className="my-4"><Game data={basketball}/></div>
-            })
-          }
-          <Link href={'/sports'} className="w-full flex items-center justify-center text-center font-semibold underline underline-offset-4">View All Upcoming Basketball <span className="icon-[basil--arrow-right-outline] w-7 h-7"/></Link>
-        </div>
+        {
+          Object.keys(popular).map((sport,i)=>{
+            return (
+              <>
+              <div className="flex items-center font-bold text-lg gap-2 2xl:text-2xl mb-4"><span className={`${popular[sport].icon} w-7 h-7`}/>Upcoming {sport}</div>
+              <div key={i} className="bg-primary-base mb-8 px-5 md:px-8 pb-10 pt-2 rounded-lg">
+                {
+                popular[sport].data.map((match,i)=>{
+                return <div key={i} className="my-4"><Game data={match}/></div>
+                })
+                }
+                <Link href={`/sports?sport=${sport}`} className="w-full flex items-center justify-center text-center font-semibold underline underline-offset-4">View All Upcoming {sport} <span className="icon-[basil--arrow-right-outline] w-7 h-7"/></Link>
+              </div>
+              </>
+            )
+          })
+        }
     </div>
   );
 }
