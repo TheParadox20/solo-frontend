@@ -1,5 +1,4 @@
 'use client'
-import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { fetcher } from "@/app/lib/data";
 import Spinner from "@/app/UI/body/Spinner";
@@ -7,19 +6,19 @@ import Breadcrumb from "@/app/UI/games/Breadcrumb";
 import Categories from "@/app/UI/games/Categories";
 import Game from "@/app/UI/games/Game";
 
-export default function Page() {
-  let params = useSearchParams();
-  let category = params.get('category');
-  let sport = params.get('sport');
-  let { data, error, isLoading } = useSWR(['/games',{sport, category}], fetcher);
+export default function Page({params}) {
+  let path = params['sports'].map((param,i)=>{
+    return param.replaceAll('%20',' ')
+  })
+  let { data, error, isLoading } = useSWR(['/games',{path:path.join('/')}], fetcher);
 
   if(isLoading) return <Spinner full={false}/>
   if(error) return <p>Error fetching games</p>
   let games = data.games
   return (
     <div>
-      <Breadcrumb />
-      <Categories categories={data.categories} />
+      <Breadcrumb path={path} />
+      <Categories path={path} categories={data.categories} />
       {
         Object.keys(games).map((date,i)=>{
           return (

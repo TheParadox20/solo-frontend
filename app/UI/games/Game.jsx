@@ -5,7 +5,7 @@ import { nowYouSee } from "@/app/lib/controlls";
 export default function Game({data}){
     let defaultStake = 20;
     let odd = (stakes, pot)=>{
-        let award = (defaultStake/stakes)*pot+defaultStake;
+        let award = ((defaultStake/stakes)==Infinity?0:(defaultStake/stakes))*pot+defaultStake;
         return (award/defaultStake).toFixed(2);
     }
     let place = (e,choice)=>{

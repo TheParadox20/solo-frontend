@@ -1,6 +1,6 @@
 'use client'
 import useSWR from "swr";
-import { fetcher } from "@/app/lib/data";
+import { fetcher, getData } from "@/app/lib/data";
 
 export default function Page() {
   let { data, error, isLoading } = useSWR(['/test/books',{}], fetcher);
@@ -24,6 +24,7 @@ export default function Page() {
             </div>
           ))
         }
+        <h4>Buttons</h4>
     </div>
   );
 }

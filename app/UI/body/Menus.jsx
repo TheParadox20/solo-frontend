@@ -2,7 +2,7 @@
 import { useState, useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import Link from "next/link"
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useParams } from "next/navigation";
 import Logo from "@/app/UI/body/Logo";
 import { hide, show } from "@/app/lib/controlls";
 import SportIcon from "@/app/UI/SportsIcon";
@@ -128,7 +128,11 @@ export function TopMenu(){
 }
 
 export function MobileSportsMenu(){
-    let params = useSearchParams();
+    let params = useParams()['sports'];
+    let path = params?params.map((param,i)=>{
+        return param.replaceAll('%20',' ')
+    }):[];
+    console.log(path)
     let {Popular, Sports} = useContext(Context);
 
     return(
@@ -136,8 +140,8 @@ export function MobileSportsMenu(){
             <div className="flex gap-6">
                 {
                     Popular.map((category,i) => (
-                        <Link href={`/sports?sport=${category.sport}&category=${category.text}`} key={i} className={`flex flex-col w-12 text-center`}>
-                            <div className={`${params.get('category')==category.text?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><SportIcon sport={category.sport} classname={'w-8 h-8'}/></div>
+                        <Link href={`/sports/${category.sport}/${category.text}`} key={i} className={`flex flex-col w-12 text-center`}>
+                            <div className={`${path[path.length-1]==category.text?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><SportIcon sport={category.sport} classname={'w-8 h-8'}/></div>
                             <span className="truncate text-xs font-semibold">{category.text}</span>
                         </Link>
                     ))
@@ -147,8 +151,8 @@ export function MobileSportsMenu(){
             <div className="flex gap-6">
                 {
                     Sports.map((sport,i) => (
-                        <Link href={`/sports?sport=${sport.sport}`} key={i} className={`flex flex-col w-12 ${params.get('sport')==sport.sport?'bg-primary-light':null}`}>
-                            <div className={`${params.get('sport')==sport.sport?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><SportIcon sport={sport.sport} classname={'w-8 h-8'}/></div>
+                        <Link href={`/sports/${sport.sport}`} key={i} className={`flex flex-col w-12 text-center`}>
+                            <div className={`${path[1]==sport.sport?'bg-primary-light':'bg-primary-base'} p-4 w-fit rounded-xl mb-1`}><SportIcon sport={sport.sport} classname={'w-8 h-8'}/></div>
                             <span className="truncate text-xs font-semibold text-center">{sport.sport}</span>
                         </Link>
                     ))
@@ -160,7 +164,10 @@ export function MobileSportsMenu(){
 
 export function SportsMenu(){
     let [activeSport, setActiveSport] = useState(null)
-    let params = useSearchParams();
+    let params = useParams()['sports'];
+    let path = params?params.map((param,i)=>{
+        return param.replaceAll('%20',' ')
+    }):[];
     let {Popular, Sports} = useContext(Context);
 
     return(
@@ -169,7 +176,7 @@ export function SportsMenu(){
                 <h3 className="text-primary-light text-base font-semibold">POPULAR</h3>
                 {
                     Popular.map((category,i) => (
-                        <Link href={`/sports?sport=${category.sport}&category=${category.text}`} key={i} className={`flex gap-2 items-center p-2 rounded-lg ${params.get('category')==category.text?'bg-primary-base':null}`}>
+                        <Link href={`/sports/${category.sport}/${category.text}`} key={i} className={`flex gap-2 items-center p-2 rounded-lg ${path[path.length-1]==category.text?'bg-primary-base':null}`}>
                             <SportIcon sport={category.sport} classname={'w-6 h-6 2xl:w-8 2xl:h-8'}/>
                             <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{category.text}</span>
                         </Link>
@@ -182,8 +189,8 @@ export function SportsMenu(){
                     Sports.map((sport,i) => {
                         return (
                             <div key={i}>
-                                <div className={`flex items-center justify-between px-2 rounded-lg 2xl:my-1 ${(params.get('category')==null&&params.get('sport')==sport.sport)?'bg-primary-base':null}`} onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
-                                    <Link href={`/sports?sport=${sport.sport}`} className={`flex gap-2 items-center my-2`}>
+                                <div className={`flex items-center justify-between px-2 rounded-lg 2xl:my-1 ${((path[1]==sport.sport && activeSport!=i) || (activeSport==i&&path.length==2))?'bg-primary-base':null}`} onClick={e=>{i==activeSport?setActiveSport(null):setActiveSport(i)}}>
+                                    <Link href={`/sports/${sport.sport}`} className={`flex gap-2 items-center my-2`}>
                                         <SportIcon sport={sport.sport} classname={'w-6 h-6 2xl:w-8 2xl:h-8'}/>
                                         <span className="truncate lg:text-xs 2xl:text-sm font-semibold">{sport.sport}</span>
                                     </Link>
@@ -194,7 +201,7 @@ export function SportsMenu(){
                                 {
                                     (activeSport!=null && i==activeSport) &&
                                     Sports[activeSport].categories.map((category,i) => (
-                                        <Link href={`/sports?sport=${sport.sport}&category=${category}`} key={i} className={`flex gap-2 items-center my-1 ml-10 p-2 rounded-lg ${params.get('category')==category?'bg-primary-base':null}`}>
+                                        <Link href={`/sports/${sport.sport}/${category}`} key={i} className={`flex gap-2 items-center my-1 ml-10 p-2 rounded-lg ${path[path.length-1]==category?'bg-primary-base':null}`}>
                                             <span className="truncate lg:text-xs 2xl:text-sm">{category}</span>
                                         </Link>
                                     ))
