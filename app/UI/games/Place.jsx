@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link";
 import Input from "@/app/UI/Input"
 import { nowYouDont } from "@/app/lib/controlls";
+import { overlayE } from "@/app/lib/trigger";
+import { postData } from "@/app/lib/data";
+import useUser from "@/app/lib/hooks/useUser";
 
 export default function Place(){
     let defaultStake = 20;
@@ -14,7 +17,10 @@ export default function Place(){
     let [market, setMarket] = useState('WIN');
     let [option, setOption] = useState('');
 
-    let awardRef = useRef();
+    let awardRef = useRef('');
+    let outcomeRef = useRef(0);
+    let idRef = useRef(0);
+    let { isLogged } = useUser();
 
     useEffect(()=>{
         window.addEventListener('place', e=>handler(e))
@@ -29,6 +35,9 @@ export default function Place(){
     },[amount])
 
     let handler = e => {
+        console.log(e.detail.game)
+        outcomeRef.current = e.detail.game.outcome
+        idRef.current = e.detail.game.id
         setMatch(e.detail.game.match)
         awardRef.current.innerText = `KES ${((amount/(e.detail.game.choice.stake+amount))*e.detail.game.pot+amount).toFixed(2)}`;
         setPot(e.detail.game.pot)
@@ -39,6 +48,16 @@ export default function Place(){
         if(e.detail.game.choice.name == 'Draw') setMarket('DRAW')
         else setMarket('WIN')
     }
+
+    let place = e=>{
+        console.log(`Placing bet on ${idRef.current} amount ${amount} choice ${outcomeRef.current}`)
+        postData((_)=>{},{
+            game: idRef.current,
+            amount,
+            choice: outcomeRef.current
+        },'/bet/place')
+    }
+
     return(
         <div className="p-4">
             <div className="flex justify-between mb-4">
@@ -61,10 +80,10 @@ export default function Place(){
                 </div>
             </div>
             {
-                true?
-                <button className="w-full bg-primary-light font-semibold py-2 rounded-md">Place Bet</button>
+                isLogged?
+                <button onClick={e=>place(e)} className="w-full bg-primary-light font-semibold py-2 rounded-md">Place Bet</button>
                 :
-                <Link className="w-full bg-primary-light font-semibold py-2 rounded-md" href={'/login'}>Login to Stake</Link>
+                <button onClick={e=>overlayE('/login')} className="w-full bg-primary-light font-semibold py-2 rounded-md">Login to Stake</button>
             }
         </div>
     )

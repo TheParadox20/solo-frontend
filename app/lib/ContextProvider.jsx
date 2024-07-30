@@ -9,7 +9,7 @@ export let Context = createContext();
 export default function ContextProvider({ children }) {
     let { data, error, isLoading } = useSWR(['/menu',{}], fetcher);
     if(isLoading) return <Spinner full={true}/>
-    if(error) return <p>Error fetching menu</p>
+    if(error) return <p>Error connecting to server</p>
     let Popular = data.Popular
     let Sports = data.Sports
     return(

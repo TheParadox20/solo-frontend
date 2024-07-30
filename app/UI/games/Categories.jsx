@@ -10,7 +10,7 @@ export default function Categories({categories, path}){
         <div id="categoriesDropDown" className="large-scroll bg-primary-base shadow-lg shadow-primary-light w-52 max-h-80 md:max-h-96 overflow-y-scroll absolute rounded-lg px-1 py-2 hidden">
             {
                 path.length!=1?
-                categories.map((cat,i)=>(<Link key={i} href={`/${path.slice(0,i).join('/')}`} className={`block text-sm p-2 rounded-md ${path[path.length-1]==cat?'bg-primary-light':null}`} onClick={e=>toggle('categoriesDropDown')}>{cat}</Link>))
+                categories.map((cat,i)=>(<Link key={i} href={`/sports/${cat}`} className={`block text-sm p-2 rounded-md ${path[path.length-1]==cat?'bg-primary-light':null}`} onClick={e=>toggle('categoriesDropDown')}>{cat}</Link>))
                 :
                 sports.map((cat,i)=>(<Link key={i} href={`/sports/${cat}`} className={`block text-sm p-2 rounded-md ${path[path.length-1]==cat?'bg-primary-light':null}`} onClick={e=>toggle('categoriesDropDown')}>{cat}</Link>))
             }

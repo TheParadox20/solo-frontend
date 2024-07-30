@@ -4,8 +4,13 @@ import { Context } from "@/app/lib/ContextProvider";
 import Link from "next/link"
 import { usePathname, useSearchParams, useParams } from "next/navigation";
 import Logo from "@/app/UI/body/Logo";
-import { hide, show } from "@/app/lib/controlls";
+import { hide, show, nowYouSee, nowYouDont, toggle, isVisible } from "@/app/lib/controlls";
+import { overlayE } from "@/app/lib/trigger";
 import SportIcon from "@/app/UI/SportsIcon";
+import useUser from "@/app/lib/hooks/useUser";
+import Overlay from "./Overlay";
+import Deposit from "./Deposit";
+import Withdraw from "./Withdraw";
 
 export function MobileBottomMenu(){
     let pathname = usePathname();
@@ -57,9 +62,11 @@ export function MobileTopMenu(){
     )
 }
 export function MobileSideMenu(){
+    let [overlay, setOverlay] = useState('');
+    const { isLogged, isLoading,error, user } = useUser();
     let pages = [
         {
-            href:'/about-us',
+            href:'/about',
             icon:'icon-[fluent--people-community-20-regular]',
             text:'About Us'
         },
@@ -69,12 +76,12 @@ export function MobileSideMenu(){
             text:'Betting Rules'
         },
         {
-            href:'/responsible-gaming',
+            href:'/account/responsible-gaming',
             icon:'icon-[fluent--shield-task-20-regular]',
             text:'Responsible gaming'
         },
         {
-            href:'/FAQs',
+            href:'/faq',
             icon:'icon-[healthicons--question-outline]',
             text:'FAQ\'s'
         },
@@ -86,8 +93,42 @@ export function MobileSideMenu(){
     ]
     let pathname = usePathname();
     return(
-        <div id="mobile_side_menu" className="block fixed z-40 top-0 right-0 w-[60vw] translate-x-[60vw] h-[100vh] bg-primary-base md:hidden">
-            <button onClick={e=>hide('mobile_side_menu')} className="w-full text-right pr-4 mt-2"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+        <>
+        <div id="mobile_side_menu" className="block fixed z-40 top-0 md:top-24 right-0 w-[60vw] translate-x-[60vw] md:w-[20vw] md:translate-x-[60vw] md:h-[80vh] md:rounded-lg pt-4 h-[100vh] bg-primary-base md:hidden px-2 md:px-4">
+            <button onClick={e=>hide('mobile_side_menu')} className="w-full text-right pr-4 mt-2 absolute"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+            {
+                isLogged && !error && !isLoading &&
+                <div className="">
+                    <div className="flex border-b-[1px] border-Grey py-2 pb-4 gap-2">
+                        <div className="icon-[ph--user-circle-light] w-10 h-10 2xl:w-12 2xl:h-12"/>
+                        <div className="flex flex-col gap-2">
+                            <span className="font-bold text-left">{user['name']}</span>
+                            <span className="text-left">{user['phone']}</span>
+                        </div>
+                    </div>
+                    <div className="border-b-[1px] border-Grey py-2 pb-4">
+                        <div className="flex justify-between">
+                            <div className="flex flex-col">
+                                <span className="font-bold text-left">KES {user['balance'].toFixed(2)}</span>
+                                <span className=" text-left">Balance</span>
+                            </div>
+                            <button className="flex items-center p-1 rounded-lg border-2 border-primary-light"><span className="icon-[mdi--eye-off-outline] w-8 h-8"/></button>
+                        </div>
+                        <div className="flex justify-between md:justify-around mt-5 gap-1">
+                            <button className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light" onClick={e=>setOverlay('deposit')}>Deposit</button>
+                            <button className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" onClick={e=>setOverlay('withdraw')}>Withdraw</button>
+                        </div>
+                    </div>
+                    <Link href={'/account'} className={`flex items-center my-2 ${pathname==='/account'?'text-primary-light':'text-LightGray'} `}>
+                        <div className="mx-3"><span className={`icon-[ph--user-circle-light] w-8 h-8`}/></div>
+                        <span className="truncate text-xs font-bold text-center">My Account</span>
+                    </Link>
+                    <Link href={'/account'} className={`flex items-center my-2 ${pathname==='/account'?'text-primary-light':'text-LightGray'} `}>
+                        <div className="mx-3"><span className={`icon-[hugeicons--coins-dollar] w-8 h-8`}/></div>
+                        <span className="truncate text-xs font-bold text-center">My statement</span>
+                    </Link>
+                </div>
+            }
             <div>
                 {
                     pages.map((page,i) => (
@@ -99,15 +140,44 @@ export function MobileSideMenu(){
                 }
             </div>
             <div className="flex justify-around border-t-[1px] border-Grey p-2 absolute bottom-20 w-full">
-                <Link href={'/login'}>Log In</Link>
-                <Link href={'/register'}>Join Now</Link>
+            {
+                (isLogged && !error && !isLoading) ?
+                <button className="text-Error font-semibold flex items-center"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
+                :
+                <>
+                    <button onClick={e=>overlayE('/login')}>Log In</button>
+                    <button onClick={e=>overlayE('/signup')}>Join Now</button>
+                </>
+                
+            }
             </div>
         </div>
+        <Overlay className={`${overlay==''?'hidden':'block'}`} >
+            {
+                (overlay == 'deposit' || overlay == 'withdraw') && 
+                <div className="bg-primary-base">
+                    <div className="flex">
+                        <h3 className="text-xl font-bold">Deposit/Withdraw</h3>
+                        <button onClick={e=>setOverlay('')} className="w-8 h-8"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+                    </div>
+                    <div className="flex border-b-[1px] border-Grey">
+                        <button className={`border-b-[1px] font-semibold ${overlay=='deposit'?'border-primary-light text-primary-light':'border-Grey'}`} onClick={e=>setOverlay('deposit')}>Deposit</button>
+                        <button className={`border-b-[1px] font-semibold ${overlay=='withdraw'?'border-primary-light text-primary-light':'border-Grey'}`} onClick={e=>setOverlay('withdraw')}>Withdraw</button>
+                    </div>
+                    {overlay=='deposit' && <Deposit/>}
+                    {overlay=='withdraw' && <Withdraw/>}
+                </div>
+            }
+        </Overlay>
+        </>
     )
 }
 
 export function TopMenu(){
     let pathname = usePathname();
+    let [overlay, setOverlay] = useState('');
+    const { isLogged, isLoading,error, user } = useUser();
+    
     return(
         <header className="hidden md:block bg-primary-dark z-30 py-3 2xl:py-5 px-4 sticky top-0">
             <div className="flex justify-between items-center">
@@ -118,11 +188,38 @@ export function TopMenu(){
                     <Link className={`${pathname==='/bets'?'text-primary-light':'text-LightGray'} font-semibold`} href="/bets">My Bets</Link>
                     <Link className={`${pathname.includes('/account')?'text-primary-light':'text-LightGray'} font-semibold`} href="/account">Account</Link>
                 </div>
-                <div className="flex gap-5">
-                    <Link className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" href={'/login'}>Log In</Link>
-                    <Link className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light" href={'/register'}>Join Now</Link>
+                {
+                    isLogged && !error && !isLoading?
+                    <div className="flex gap-3">
+                        <button onClick={e=>{toggle('mobile_side_menu'); isVisible('mobile_side_menu')?show('mobile_side_menu'):hide('mobile_side_menu')}} className="flex justify-center items-center gap-2">
+                            <div className="icon-[ph--user-circle-light] w-10 h-10 2xl:w-12 2xl:h-12"/>
+                            <div className="flex flex-col">
+                                <span className="font-bold text-left">KES {user['balance'].toFixed(2)}</span>
+                                <span className=" text-left">Balance</span>
+                            </div>
+                            <div className="icon-[entypo--chevron-small-down] w-10 h-10"/>
+                        </button>
+                        <button className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light" onClick={e=>setOverlay('deposit')}>Deposit</button>
+                    </div>
+                    :
+                    <div className="flex gap-5">
+                    <button onClick={e=>overlayE('/login')} className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" >Log In</button>
+                    <button onClick={e=>overlayE('/signup')} className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light">Join Now</button>
                 </div>
+                }
             </div>
+            <Overlay className={`${overlay==''?'hidden':'block'}`} >
+                {
+                    (overlay == 'deposit' || overlay == 'withdraw') && 
+                    <div className="bg-primary-base">
+                        <div className="flex">
+                            <h3 className="text-xl font-bold">Deposit</h3>
+                            <button onClick={e=>setOverlay('')} className="w-8 h-8"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+                        </div>
+                        <Deposit/>
+                    </div>
+                }
+            </Overlay>
         </header>
     )
 }

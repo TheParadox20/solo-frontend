@@ -2,6 +2,10 @@ export function placeE(game){
     window.dispatchEvent(new CustomEvent("place", { detail: {game}}));
 }
 
+export function overlayE(page){
+    window.dispatchEvent(new CustomEvent("overlay", { detail: {page}}));
+}
+
 export function popupE(state, type, message){
     window.dispatchEvent(new CustomEvent("popup", { detail: {state:state, type:type, message:message}}));
 }

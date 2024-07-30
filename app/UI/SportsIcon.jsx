@@ -11,7 +11,7 @@ export default function SportIcon({sport,classname}){
         "Volleyball": "icon-[ph--volleyball]",
         "Boxing": "icon-[hugeicons--boxing-glove-01]",
         "Darts": "icon-[gravity-ui--target-dart]",
-        "Water polo": "icon-[icon-park-outline--waterpolo]",
+        "Waterpolo": "icon-[icon-park-outline--waterpolo]",
         "eSoccer": "icon-[solar--gamepad-linear]",
       };
       return <span className={`${sportIcons[sport]} ${classname}`}/>
