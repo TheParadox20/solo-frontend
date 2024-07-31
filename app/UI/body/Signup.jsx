@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react"
 import Input from "../Input"
 import Logo from "./Logo"
+import { save } from "@/app/lib/storage";
 import { postData } from "@/app/lib/data"
 
 export default function Signup({control}){
@@ -12,7 +13,10 @@ export default function Signup({control}){
 
     let submit = (e)=>{
         e.preventDefault();
-        postData((_)=>{},{name,phone,password},'/signup')
+        postData((response)=>{
+            save('token',response.token)
+            control('')
+        },{name,phone,password},'/signup')
     }
 
     return(

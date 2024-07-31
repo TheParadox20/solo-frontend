@@ -63,7 +63,8 @@ export function MobileTopMenu(){
 }
 export function MobileSideMenu(){
     let [overlay, setOverlay] = useState('');
-    const { isLogged, isLoading,error, user } = useUser();
+    const { isLogged, isLoading,error, user, logout, stateChange } = useUser();
+    console.log('$#%#%# ',stateChange);
     let pages = [
         {
             href:'/about',
@@ -142,7 +143,7 @@ export function MobileSideMenu(){
             <div className="flex justify-around border-t-[1px] border-Grey p-2 absolute bottom-20 w-full">
             {
                 (isLogged && !error && !isLoading) ?
-                <button className="text-Error font-semibold flex items-center"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
+                <button onClick={e=>logout()} className="text-Error font-semibold flex items-center"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
                 :
                 <>
                     <button onClick={e=>overlayE('/login')}>Log In</button>
@@ -268,7 +269,7 @@ export function SportsMenu(){
     let {Popular, Sports} = useContext(Context);
 
     return(
-        <div className="hidden md:block bg-primary-dark ml-2 px-4 2xl:pr-16">
+        <div className="hidden md:block bg-primary-dark ml-2 px-4 2xl:pr-16 max-h-[90vh] overflow-y-scroll large-scroll">
             <div className="border-b-[1px] border-Grey pb-2 mb-4">
                 <h3 className="text-primary-light text-base font-semibold">POPULAR</h3>
                 {

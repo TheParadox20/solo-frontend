@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import Input from "../Input"
 import Logo from "./Logo"
 import { postData } from "@/app/lib/data"
+import {load} from "@/app/lib/storage"
 import useUser from "@/app/lib/hooks/useUser"
 
 export default function Login({control}){
@@ -13,7 +14,7 @@ export default function Login({control}){
 
     let submit = (e)=>{
         e.preventDefault();
-        login(phone,password)
+        login(phone,password,(_)=>{if(load('token')!=null) control('')})
     }
 
     return(

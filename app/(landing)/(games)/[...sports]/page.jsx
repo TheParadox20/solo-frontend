@@ -20,7 +20,7 @@ export default function Page({params}) {
       <Breadcrumb path={path} />
       <Categories path={path} categories={data.categories} />
       {
-        Object.keys(games).map((date,i)=>{
+        games && Object.keys(games).map((date,i)=>{
           return (
             <div key={i}>
               <h1 className="2xl:text-xl font-bold my-4">{date}</h1>
