@@ -1,25 +1,41 @@
 'use client'
+import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/app/lib/data";
 import Spinner from "@/app/UI/body/Spinner";
 import Breadcrumb from "@/app/UI/games/Breadcrumb";
 import Categories from "@/app/UI/games/Categories";
 import Game from "@/app/UI/games/Game";
+import Search from "@/app/UI/body/Search";
 
 export default function Page({params}) {
+  let [search, setSearch] = useState('');
   let path = params['sports'].map((param,i)=>{
     return param.replaceAll('%20',' ')
   })
-  let { data, error, isLoading } = useSWR(['/games',{path:path.join('/')}], fetcher);
+  let { data, error, isLoading, mutate } = useSWR(['/games',{path:path.join('/'),search}], fetcher);
+  useEffect(()=>{
+    if(search.split(' ').length%3==0){
+      mutate()
+    }
+  },[search])
 
-  if(isLoading) return <Spinner full={false}/>
   if(error) return <p>Error fetching games</p>
-  let games = data.games
+  let games = data?.games
   return (
     <div>
+      <Search search={search} setSearch={setSearch}/>
       <Breadcrumb path={path} />
-      <Categories path={path} categories={data.categories} />
+      <div className="flex justify-between items-center">
+        <Categories path={path} categories={data?.categories} />
+        <select className="border-primary-light/50 border-2 rounded-lg px-3 h-12 font-semibold w-32" name="market" id="">
+          <option value="">Markets</option>
+        </select>
+      </div>
       {
+        isLoading?
+        <Spinner full={false}/>
+        :
         games && Object.keys(games).map((date,i)=>{
           return (
             <div key={i}>

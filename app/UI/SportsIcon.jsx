@@ -16,6 +16,7 @@ export default function SportIcon({sport,classname}){
         "American Football": "icon-[game-icons--american-football-helmet]",
         'Aussie Rules': "icon-[ic--round-sports-rugby]",
         "Beach Volley": "icon-[emojione-monotone--volleyball]",
+        "Handball":"icon-[fluent-emoji-high-contrast--man-playing-handball]"
       };
       return <span className={`${sportIcons[sport]} ${classname}`}/>
 }

@@ -8,7 +8,7 @@ export default function Footer(){
                 <div className="md:w-1/4">
                     <Logo/>
                     <p className="my-3 text-sm">
-                    Kenya{'\''}s first betting exchange, built for the people. Join us today for an unmatched betting experience and enjoy instant payouts via M-Pesa.
+                    Kenya{'\''}s first betting exchange. Join us today for an unmatched betting experience and enjoy instant payouts via M-Pesa.
                     </p>
                     <Link className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8" href={'/register'}>Join Now</Link>
                 </div>

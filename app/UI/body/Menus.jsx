@@ -63,7 +63,7 @@ export function MobileTopMenu(){
 }
 export function MobileSideMenu(){
     let [overlay, setOverlay] = useState('');
-    const {isLoading,error, user, logout, stateChange } = useUser();
+    const {isLoading,error, user, logout } = useUser();
     let {isLogged} = useContext(Context);
     console.log('$#%#%# ',isLogged);
     let pages = [
@@ -98,6 +98,7 @@ export function MobileSideMenu(){
         <>
         <div id="mobile_side_menu" className="block fixed z-40 top-0 md:top-24 right-0 w-[60vw] translate-x-[60vw] md:w-[20vw] md:translate-x-[60vw] md:h-[80vh] md:rounded-lg pt-4 h-[100vh] bg-primary-base md:hidden px-2 md:px-4">
             <button onClick={e=>hide('mobile_side_menu')} className="w-full text-right pr-4 mt-2 absolute"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+            <div className="my-8"></div>
             {
                 isLogged && !error && !isLoading &&
                 <div className="">
@@ -134,22 +135,23 @@ export function MobileSideMenu(){
             <div>
                 {
                     pages.map((page,i) => (
-                        <Link href={page.href} key={i} className={`flex items-center my-2 ${pathname===(page.href)?'text-primary-light':'text-LightGray'} `}>
+                        <Link href={page.href} key={i} className={`flex items-center my-3 ${pathname===(page.href)?'text-primary-light':'text-LightGray'} `}>
                             <div className="mx-3"><span className={`${page.icon} w-8 h-8`}/></div>
                             <span className="truncate text-xs font-bold text-center">{page.text}</span>
                         </Link>
                     ))
                 }
             </div>
-            <div className="flex justify-around border-t-[1px] border-Grey p-2 absolute bottom-20 w-full">
+            
+            <div className="border-t-[1px] border-Grey p-2 absolute bottom-20 w-full">
             {
                 (isLogged && !error && !isLoading) ?
-                <button onClick={e=>logout()} className="text-Error font-semibold flex items-center"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
+                <button onClick={e=>logout()} className="text-Error font-semibold flex items-center mt-3"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
                 :
-                <>
-                    <button onClick={e=>overlayE('/login')}>Log In</button>
-                    <button onClick={e=>overlayE('/signup')}>Join Now</button>
-                </>
+                <div className="flex justify-around">
+                    <button onClick={e=>overlayE('/login')} className="w-24  py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" >Log In</button>
+                    <button onClick={e=>overlayE('/signup')} className="w-24  py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light">Join Now</button>
+                </div>
                 
             }
             </div>
@@ -205,9 +207,9 @@ export function TopMenu(){
                     </div>
                     :
                     <div className="flex gap-5">
-                    <button onClick={e=>overlayE('/login')} className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" >Log In</button>
-                    <button onClick={e=>overlayE('/signup')} className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light">Join Now</button>
-                </div>
+                        <button onClick={e=>overlayE('/login')} className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" >Log In</button>
+                        <button onClick={e=>overlayE('/signup')} className="w-28 2xl:w-32 py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light">Join Now</button>
+                    </div>
                 }
             </div>
             <Overlay control={setOverlay} id={'deposit-overlay'} className={`${overlay==''?'hidden':'block'}`} >

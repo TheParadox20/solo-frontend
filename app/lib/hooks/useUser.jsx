@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import useSWR from "swr";
 import { fetcher } from "@/app/lib/data";
@@ -6,8 +6,7 @@ import { save, load, remove } from "@/app/lib/storage";
 import { postData } from "@/app/lib/data"
 
 export default function useUser () {
-    let [stateChange, setStateChange] = useState(0);
-    let {isLogged, setIsLogged} = useContext(Context);
+    let {setIsLogged} = useContext(Context);
     const { data, isError, isLoading, mutate } = useSWR(['/user',{}], fetcher)
 
     let logout = ()=>{
@@ -41,6 +40,5 @@ export default function useUser () {
         isError,
         login,
         logout,
-        stateChange
     }
 }

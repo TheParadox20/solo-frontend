@@ -3,19 +3,22 @@ import Link from "next/link";
 import useSWR from "swr";
 import { fetcher } from "@/app/lib/data";
 import Spinner from "@/app/UI/body/Spinner";
-import Hero from "@/app/UI/body/Hero";
+import Carousel from "@/app/UI/body/Hero";
 import Game from "@/app/UI/games/Game";
 import SportIcon from "@/app/UI/SportsIcon";
 
 export default function Page() {
   let { data:popular, error, isLoading } = useSWR(['/home',{}], fetcher);
 
-  if(isLoading) return <Spinner full={false}/>
   if(error) return <p>Error fetching games</p>
+  
   return (
     <div className="lg:mt-7">
-        <Hero/>
+        <Carousel/>
         {
+          isLoading?
+          <Spinner full={false}/>
+          :
           Object.keys(popular).map((sport,i)=>{
             return (
               <div key={i}>

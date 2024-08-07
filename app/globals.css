@@ -34,6 +34,9 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px transparent inset !important;
 }
 
+select{
+  background: transparent;
+}
 input[type=number]{
     -moz-appearance: textfield;
 }
