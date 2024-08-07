@@ -1,5 +1,6 @@
 'use client'
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useContext } from "react"
+import { Context } from "@/app/lib/ContextProvider"
 import Link from "next/link";
 import Input from "@/app/UI/Input"
 import { nowYouDont } from "@/app/lib/controlls";
@@ -20,7 +21,7 @@ export default function Place(){
     let awardRef = useRef('');
     let outcomeRef = useRef(0);
     let idRef = useRef(0);
-    let { isLogged } = useUser();
+    let {isLogged} = useContext(Context);
 
     useEffect(()=>{
         window.addEventListener('place', e=>handler(e))
@@ -47,6 +48,7 @@ export default function Place(){
         else setOption('')
         if(e.detail.game.choice.name == 'Draw') setMarket('DRAW')
         else setMarket('WIN')
+        setAmount(amount)
     }
 
     let place = e=>{
@@ -67,7 +69,7 @@ export default function Place(){
                     <p className="text-nowrap font-light">{match}</p>
                 </div>
                 <div className="flex h-fit">
-                    <button className="mr-4 flex items-center p-1 2xl:p-2 rounded-xl"><span className="w-6 h-6 2xl:w-7 2xl:h-7 icon-[lucide--ticket-plus]"/></button>
+                    {/* <button className="mr-4 flex items-center p-1 2xl:p-2 rounded-xl"><span className="w-6 h-6 2xl:w-7 2xl:h-7 icon-[lucide--ticket-plus]"/></button> */}
                     <button className="bg-primary-dark/75 flex items-center p-1 2xl:p-2 rounded-xl text-Error" onClick={e=>nowYouDont(['place','placeMobile'])}><span className="w-6 h-6 2xl:w-7 2xl:h-7 icon-[material-symbols-light--close]"/></button>
                 </div>
             </div>

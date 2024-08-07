@@ -13,6 +13,9 @@ export default function SportIcon({sport,classname}){
         "Darts": "icon-[gravity-ui--target-dart]",
         "Waterpolo": "icon-[icon-park-outline--waterpolo]",
         "eSoccer": "icon-[solar--gamepad-linear]",
+        "American Football": "icon-[game-icons--american-football-helmet]",
+        'Aussie Rules': "icon-[ic--round-sports-rugby]",
+        "Beach Volley": "icon-[emojione-monotone--volleyball]",
       };
       return <span className={`${sportIcons[sport]} ${classname}`}/>
 }

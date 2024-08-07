@@ -63,8 +63,9 @@ export function MobileTopMenu(){
 }
 export function MobileSideMenu(){
     let [overlay, setOverlay] = useState('');
-    const { isLogged, isLoading,error, user, logout, stateChange } = useUser();
-    console.log('$#%#%# ',stateChange);
+    const {isLoading,error, user, logout, stateChange } = useUser();
+    let {isLogged} = useContext(Context);
+    console.log('$#%#%# ',isLogged);
     let pages = [
         {
             href:'/about',
@@ -153,13 +154,12 @@ export function MobileSideMenu(){
             }
             </div>
         </div>
-        <Overlay className={`${overlay==''?'hidden':'block'}`} >
+        <Overlay control={setOverlay} id={'deposit-withdraw-overlay'} className={`${overlay==''?'hidden':'block'}`}>
             {
-                (overlay == 'deposit' || overlay == 'withdraw') && 
+                (overlay == 'deposit' || overlay == 'withdraw') &&
                 <div className="bg-primary-base">
                     <div className="flex">
                         <h3 className="text-xl font-bold">Deposit/Withdraw</h3>
-                        <button onClick={e=>setOverlay('')} className="w-8 h-8"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
                     </div>
                     <div className="flex border-b-[1px] border-Grey">
                         <button className={`border-b-[1px] font-semibold ${overlay=='deposit'?'border-primary-light text-primary-light':'border-Grey'}`} onClick={e=>setOverlay('deposit')}>Deposit</button>
@@ -177,7 +177,8 @@ export function MobileSideMenu(){
 export function TopMenu(){
     let pathname = usePathname();
     let [overlay, setOverlay] = useState('');
-    const { isLogged, isLoading,error, user } = useUser();
+    const {isLoading,error, user } = useUser();
+    let {isLogged} = useContext(Context);
     
     return(
         <header className="hidden md:block bg-primary-dark z-30 py-3 2xl:py-5 px-4 sticky top-0">
@@ -209,13 +210,12 @@ export function TopMenu(){
                 </div>
                 }
             </div>
-            <Overlay className={`${overlay==''?'hidden':'block'}`} >
+            <Overlay control={setOverlay} id={'deposit-overlay'} className={`${overlay==''?'hidden':'block'}`} >
                 {
                     (overlay == 'deposit' || overlay == 'withdraw') && 
                     <div className="bg-primary-base">
                         <div className="flex">
                             <h3 className="text-xl font-bold">Deposit</h3>
-                            <button onClick={e=>setOverlay('')} className="w-8 h-8"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
                         </div>
                         <Deposit/>
                     </div>

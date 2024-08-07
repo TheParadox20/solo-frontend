@@ -15,7 +15,7 @@ export default function Overlays(){
     }
 
     return(
-        <Overlay id="overlays" className={`${page==''?'hidden':'block'}`}>
+        <Overlay control={setPage} id={'alpha-overlay'} className={`${page==''?'hidden':'block'}`}>
             {page=='/login' && <Login control={setPage}/>}
             {page=='/signup' && <Signup control={setPage}/>}
         </Overlay>
