@@ -11,9 +11,15 @@ export default function ContextProvider({ children }) {
     let [isLogged, setIsLogged] = useState(false);
     let { data, error, isLoading } = useSWR(['/menu',{}], fetcher);
     if(isLoading) return <Spinner full={true}/>
-    if(error) return <p>Error connecting to server</p>
-    let Popular = data.Popular
-    let Sports = data.Sports
+    let Popular;
+    let Sports;
+    if(error){
+        Popular = []
+        Sports = []
+    }else{
+        Popular = data.Popular
+        Sports = data.Sports
+    }
     return(
         <Context.Provider value={{Popular, Sports, isLogged, setIsLogged}}>
         {children}

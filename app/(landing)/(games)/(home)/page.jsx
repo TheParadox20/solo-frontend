@@ -10,16 +10,18 @@ import SportIcon from "@/app/UI/SportsIcon";
 export default function Page() {
   let { data:popular, error, isLoading } = useSWR(['/home',{}], fetcher);
 
-  if(error) return <p>Error fetching games</p>
   
   return (
     <div className="lg:mt-7">
         <Carousel/>
         {
+          error && <p>Error fetching games</p>
+        }
+        {
           isLoading?
           <Spinner full={false}/>
           :
-          Object.keys(popular).map((sport,i)=>{
+          !error && Object.keys(popular).map((sport,i)=>{
             return (
               <div key={i}>
                 <div className="flex items-center font-bold text-lg gap-2 2xl:text-2xl mb-4"><SportIcon sport={sport} classname={'w-7 h-7'}/>Upcoming {sport}</div>
