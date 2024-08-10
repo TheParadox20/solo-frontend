@@ -21,6 +21,7 @@ module.exports = {
         LightGray: "rgba(245, 240, 240, 1)",
         Grey:'rgba(201, 204, 206, 0.2)',
         Success: 'rgba(34, 220, 142, 1)',
+        Warning: 'rgba(220, 156, 34, 1)',
         Error: 'rgba(220, 34, 34, 1)',
       },
     },

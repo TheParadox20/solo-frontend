@@ -1,9 +1,8 @@
 import { useEffect, useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import useSWR from "swr";
-import { fetcher } from "@/app/lib/data";
+import { fetcher, postData } from "@/app/lib/data";
 import { save, load, remove } from "@/app/lib/storage";
-import { postData } from "@/app/lib/data"
 
 export default function useUser () {
     let {setIsLogged} = useContext(Context);
@@ -29,6 +28,13 @@ export default function useUser () {
         },{phone,password},'/signin')
     }
 
+    let updateBalance = (amount)=>{
+        mutate({
+            ...data,
+            balance: data.balance + amount
+        })
+    }
+
     useEffect(()=>{
         if(!isLoading && !isError) if(data?.name) setIsLogged(true)
         console.log('User >> ',data)
@@ -40,5 +46,6 @@ export default function useUser () {
         isError,
         login,
         logout,
+        updateBalance
     }
 }

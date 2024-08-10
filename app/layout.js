@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import ContextProvider from "@/app/lib/ContextProvider";
 import Footer from "@/app/UI/body/Footer";
+import Popup from "@/app/UI/body/Popup";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer/>
           </ContextProvider>
+          <Popup/>
         </body>
       </Suspense>
     </html>

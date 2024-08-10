@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect, useRef, useContext } from "react"
 import { Context } from "@/app/lib/ContextProvider"
-import Link from "next/link";
 import Input from "@/app/UI/Input"
 import { nowYouDont } from "@/app/lib/controlls";
 import { overlayE } from "@/app/lib/trigger";
@@ -22,6 +21,7 @@ export default function Place(){
     let outcomeRef = useRef(0);
     let idRef = useRef(0);
     let {isLogged} = useContext(Context);
+    let {updateBalance} = useUser();
 
     useEffect(()=>{
         window.addEventListener('place', e=>handler(e))
@@ -53,7 +53,9 @@ export default function Place(){
 
     let place = e=>{
         console.log(`Placing bet on ${idRef.current} amount ${amount} choice ${outcomeRef.current}`)
-        postData((_)=>{},{
+        postData((response)=>{
+            if(response.message) updateBalance(-amount)
+        },{
             game: idRef.current,
             amount,
             choice: outcomeRef.current

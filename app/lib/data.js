@@ -2,6 +2,7 @@ import {load} from './storage.js'
 import { popupE } from "@/app/lib/trigger"
 
 export function getData(setData,endpoint,parameters, token=load('token')) {
+    popupE('Processing', 'Please wait...')
     //map parameters to get parameter format
     let params = new URLSearchParams(parameters).toString();
     console.log('Payload :: ', params)
@@ -13,13 +14,13 @@ export function getData(setData,endpoint,parameters, token=load('token')) {
     .then(response => response.json())
     .then(data => {
         console.log(`From ${endpoint}`, data)
-        if (data.error) popupE('error', 'Error', data.error)
+        if (data.error) popupE('Error', data.error)
         else setData(data);
-        if (data.message) popupE('ok', 'Success ✅', data.message)
+        if (data.message) popupE('Success', data.message)
     })
     .catch(err => {
         console.log(err)
-        popupE('error', 'Error', 'Server Error')
+        popupE('Error', 'Server Error')
     });
 }
 
@@ -44,7 +45,7 @@ export function getFile(name,endpoint,parameters, token=load('token')) {
     })
     .catch(err => {
         console.log(err)
-        popupE('error', 'Error', 'Server Error')
+        popupE('Error', 'Server Error')
     });
 }
 
@@ -61,17 +62,18 @@ export function postFile(setData,file,title,endpoint,token = load('token')) {
     })
         .then((res) => res.json())
         .then((data) => {
-            if (data.error) popupE('error', 'Error', data.error)
-            if (data.message) popupE('ok', 'Success', data.message)
+            if (data.error) popupE('Error', data.error)
+            if (data.message) popupE('Success', data.message)
             setData(data);
         })
         .catch(err => {
             console.log(err)
-            popupE('error', 'Error', 'File upload Error')
+            popupE('Error', 'File upload Error')
         });
 }
 
 export function postData(setData,data,endpoint,token = load('token')) {
+    popupE('Processing', 'Please wait...')
     fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
         method: "POST",
         headers:{
@@ -83,13 +85,13 @@ export function postData(setData,data,endpoint,token = load('token')) {
     .then((res) => res.json())
     .then((data) => {
         console.log(`From ${endpoint}`, data)
-        if (data.error) popupE('error', 'Error', data.error)
-        if (data.message) popupE('ok', 'Success', data.message)
+        if (data.error) popupE('Error', data.error)
+        if (data.message) popupE('Success', data.message)
         setData(data);
     })
     .catch(err => {
         console.log(err)
-        popupE('error', 'Error', 'Server Error')
+        popupE('Error', 'Server Error')
     });
 }
 

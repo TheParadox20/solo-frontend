@@ -1,11 +1,13 @@
 'use client'
 import { useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
-import useUser from "@/app/lib/hooks/useUser"
+import useBetslip from "@/app/lib/hooks/useBetslip";
 import { overlayE } from "@/app/lib/trigger";
 
 export default function Betslip(){
     let {isLogged} = useContext(Context);
+    let {betslip, isLoading, isError} = useBetslip();
+
     return(
         <div className="bg-primary-base relative h-[50vh] rounded-xl">
             <h6 className="text-xl font-bold p-4">Betslip</h6>
