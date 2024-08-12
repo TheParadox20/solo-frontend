@@ -3,9 +3,8 @@ import { useState, useEffect } from "react"
 
 export default function Popup(){
     let [hidden, setHidden] = useState(true)
-    let [state, setState] = useState('bg-primary/50 shadow-primary/50')//ok, warning, error
-    let [type, setType] = useState('New notification')
-    let [message, setMessage] = useState('The quick brown fox jumped over the lazy dogs')
+    let [state, setState] = useState('Success')
+    let [message, setMessage] = useState('')
 
     useEffect(()=>{
         window.addEventListener('popup', e=>handler(e))
@@ -17,21 +16,40 @@ export default function Popup(){
         return ()=>clearTimeout(timer)
     },[hidden])
 
+    let states = {
+        Success: {
+            icon: 'icon-[teenyicons--tick-circle-outline]',
+            text: 'text-Success'
+        },
+        Warning: {
+            icon: 'icon-[bi--exclamation-circle]',
+            text: 'text-Warning'
+        },
+        Error: {
+            icon: 'icon-[ph--x-circle]',
+            text: 'text-Error'
+        },
+        Processing: {
+            icon: 'icon-[line-md--loading-twotone-loop]',
+            text: 'text-primary-light'
+        }
+    }
+
     let handler = e => {
         setHidden(false)
-        if (e.detail.state == 'ok') setState('bg-primary/50 shadow-primary/50')
-        if (e.detail.state == 'warning') setState('bg-warning/50 shadow-warning/50')
-        if (e.detail.state == 'error') setState('bg-warning/50 shadow-warning/50')
-        setType(e.detail.type)
+        setState(e.detail.state)
         setMessage(e.detail.message)
     }
     return(
-        <div className={`fixed top-4 right-0 p-4 w-52 md:w-96 rounded-md z-50 shadow-xl transition-transform duration-500 ease-in-out transform ${state} ${hidden ? 'translate-x-full shadow-none' : 'translate-x-0 mr-4'}`}>
-            <div className="flex mb-4 justify-between font-semibold">
-                <button className="w-6 h-6" onClick={e=>setHidden(true)}/>
-                <span>{type}</span>
+        <div className={`fixed bg-primary-dark top-8 right-0 px-4 pt-4 w-96 rounded-md z-50 shadow-lg transition-transform duration-500 ease-in-out transform shadow-primary-light ${hidden ? 'translate-x-full shadow-none' : 'translate-x-0 mr-4'}`} onClick={e=>setHidden(true)}>
+            <div className="flex justify-between mb-4 gap-4 items-center font-semibold">
+                <div className="flex items-center gap-4">
+                    <button className={`w-6 ${states[state].text} h-6 ${states[state].icon}`}/>
+                    <span className={`${states[state].text}`}>{state}:</span>
+                    <p className="text-sm">{message}</p>
+                </div>
+                <button className="w-6 h-6 icon-[material-symbols-light--close]"/>
             </div>
-            <p className="text-sm">{message}</p>
         </div>
     )
 }

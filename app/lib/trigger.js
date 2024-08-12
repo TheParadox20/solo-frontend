@@ -6,8 +6,8 @@ export function overlayE(page){
     window.dispatchEvent(new CustomEvent("overlay", { detail: {page}}));
 }
 
-export function popupE(state, type, message){
-    window.dispatchEvent(new CustomEvent("popup", { detail: {state:state, type:type, message:message}}));
+export function popupE(state, message){
+    window.dispatchEvent(new CustomEvent("popup", { detail: {state:state, message:message}}));
 }
 
 export function verifyE(){

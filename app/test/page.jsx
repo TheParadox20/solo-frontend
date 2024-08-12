@@ -1,6 +1,7 @@
 'use client'
 import useSWR from "swr";
 import { fetcher, getData } from "@/app/lib/data";
+import { popupE } from "@/app/lib/trigger";
 
 export default function Page() {
   let { data, error, isLoading } = useSWR(['/test/books',{}], fetcher);
@@ -25,6 +26,7 @@ export default function Page() {
           ))
         }
         <h4>Buttons</h4>
+        <button className=" bg-primary-light py-1 px-4 hover:scale-105" onClick={e=>popupE('Error','New notification received')}>Popup</button>
     </div>
   );
 }
