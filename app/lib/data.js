@@ -95,6 +95,10 @@ export function postData(setData,data,endpoint,token = load('token')) {
     });
 }
 
+export function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function fetcher([endpoint,parameters, token=load('token')]) {
     // if (load('token') == null) throw new Error('Session Expired')
     let params = new URLSearchParams(parameters).toString();

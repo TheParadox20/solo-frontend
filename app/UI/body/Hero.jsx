@@ -1,6 +1,8 @@
 import Link from "next/link"
 
 import React, { useState, useEffect } from "react";
+import { overlayE } from "@/app/lib/trigger";
+import ConnectWallet from "@/app/UI/body/ConnectWallet";
 
 // Example components for the carousel
 function Welcome({key}){
@@ -11,7 +13,7 @@ function Welcome({key}){
         <p className="my-3 w-3/4 md:w-1/2">
           Kenya{'\''}s first betting exchange. Join us today for an unmatched betting experience and enjoy instant payouts via M-Pesa.
         </p>
-        <Link className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8 hover:scale-105" href={'/register'}>Join Now</Link>
+        <button className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8 hover:scale-105" onClick={e=>overlayE('/signup')} >Join Now</button>
       </div>
       <img className="absolute w-2/5 md:w-1/3 lg:w-[37%] 2xl:w-[30%] -z-10 right-0 bottom-0" src="/man_celebrating.png" alt="" />
     </div>
@@ -25,7 +27,7 @@ function Instant({key}){
         <p className="my-3 w-3/4 md:w-1/2">
         Enjoy the convenience of fast and secure deposits and withdrawals via M-Pesa. Fund your account and access your winnings seamlessly with Solobet today.
         </p>
-        <button className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8 hover:scale-105">Deposit now</button>
+        <button className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8 hover:scale-105" onClick={e=>overlayE('/deposit')}>Deposit now</button>
       </div>
     </div>
   )
@@ -38,7 +40,7 @@ function Crypto({key}){
         <p className="my-3 w-3/4">
         Enjoy seamless transactions with your preferred cryptocurrency. Connect your wallet and start betting.
         </p>
-        <button className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8 hover:scale-105">Connect Crypto Wallet</button>
+        <ConnectWallet className="bg-primary-light block w-fit py-2 md:py-4 px-8 rounded-lg font-semibold lg:mt-8 hover:scale-105">Connect Crypto Wallet</ConnectWallet>
       </div>
     </div>
   )

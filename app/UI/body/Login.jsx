@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react"
 import Input from "../Input"
 import Logo from "./Logo"
-import { postData } from "@/app/lib/data"
 import {load} from "@/app/lib/storage"
 import useUser from "@/app/lib/hooks/useUser"
+import ConnectWallet from "@/app/UI/body/ConnectWallet";
 
 export default function Login({control}){
     let [phone, setPhone] = useState('');
@@ -33,7 +33,9 @@ export default function Login({control}){
                 <p className="px-2">OR</p>
                 <div class="flex-grow min-w-full border-t-[1px] border-Grey"></div>
             </div>
-            <button className="flex items-center justify-center gap-4 py-2 text-sm font-semibold border-2 border-primary-light rounded-lg w-full hover:shadow-md hover:shadow-primary-light"><span className="w-6 h-6 icon-[hugeicons--bitcoin-wallet]"/> Connect Crypto Wallet</button>
+            <ConnectWallet className="flex items-center justify-center gap-4 py-2 text-sm font-semibold border-2 border-primary-light rounded-lg w-full hover:shadow-md hover:shadow-primary-light">
+                <span className="w-6 h-6 icon-[hugeicons--bitcoin-wallet]"/> Connect Crypto Wallet
+            </ConnectWallet>
             <p className="text-xs mt-4 mb-8 font-semibold">Don{"\'"}t have an account? <button className="text-primary-light" onClick={e=>control('/signup')}>Sign up</button></p>
         </div>
     )
