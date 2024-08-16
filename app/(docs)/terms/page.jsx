@@ -1,19 +1,39 @@
-import React from "react";
+"use client"; // Mark this component as a Client Component
+
+import React, { useState, useEffect } from "react";
 
 export default function Terms() {
+  const [currentSection, setCurrentSection] = useState('section-one');
+
+  useEffect(() => {
+    const getCurrentSection = () => {
+      if (typeof window !== 'undefined') {
+        const id = window.location.hash.slice(1);
+        setCurrentSection(id || 'section-one');
+      }
+    };
+
+    getCurrentSection();
+    window.addEventListener('hashchange', getCurrentSection);
+    return () => {
+      window.removeEventListener('hashchange', getCurrentSection);
+    };
+  }, []);
+
   return (
     <>
       <div className="w-screen bg-primary-dark pt-5">
-        <main className="relative mx-auto px-10 md:max-w-screen-md">
-          <nav className="top-20 -left-56 mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
-            <div className="pb-2 text-xl font-medium text-primary-light">
+        <main className="relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          {/* Sidebar Navigation */}
+          <nav className="relative mx-auto mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-4 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+            <div className="pb-2 text-xl font-medium text-white">
               Sections
             </div>
             <hr className="h-1 w-10 bg-primary-light" />
             <div className="mt-4">
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-one' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-one"
                 >
                   Introduction
@@ -21,7 +41,7 @@ export default function Terms() {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-two' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-two"
                 >
                   User Responsibilities
@@ -29,7 +49,7 @@ export default function Terms() {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-three' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-three"
                 >
                   Prohibited Activities
@@ -37,7 +57,7 @@ export default function Terms() {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-four' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-four"
                 >
                   Account Suspension and Termination
@@ -45,7 +65,7 @@ export default function Terms() {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-five' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-five"
                 >
                   Limitation of Liability
@@ -53,7 +73,7 @@ export default function Terms() {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-six' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-six"
                 >
                   Governing Law
@@ -61,7 +81,7 @@ export default function Terms() {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-seven' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-seven"
                 >
                   Contact Us
@@ -69,8 +89,9 @@ export default function Terms() {
               </div>
             </div>
           </nav>
-          <article className="text-LightGray">
-            <h2 className="mb-10 mt-4 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
+          {/* Main Content */}
+          <article className="text-LightGray mt-4 lg:mt-0 lg:ml-64">
+            <h2 className="mb-10 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
               <span className="text-primary-light">Terms & Conditions</span>
             </h2>
             <p className="mb-10 text-LightGray">

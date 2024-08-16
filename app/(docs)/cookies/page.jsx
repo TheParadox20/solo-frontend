@@ -1,15 +1,40 @@
-import React from "react";
+"use client"; // Add this line to mark the component as a client component
+
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
 const Cookies = () => {
+  const [currentSection, setCurrentSection] = useState('section-one');
+
+  useEffect(() => {
+    // Function to get current section ID from URL
+    const getCurrentSection = () => {
+      if (typeof window !== 'undefined') {
+        const id = window.location.hash.slice(1);
+        setCurrentSection(id || 'section-one'); // Default to 'section-one' if no hash is present
+      }
+    };
+
+    // Update current section on mount
+    getCurrentSection();
+
+    // Add event listener for hash changes
+    window.addEventListener('hashchange', getCurrentSection);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener('hashchange', getCurrentSection);
+    };
+  }, []);
+
   return (
     <>
       <div className="w-screen bg-primary-dark pt-5">
-        <main className="relative mx-auto px-10 md:max-w-screen-md">
+        <main className="relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           {/* Sidebar Navigation */}
-          <nav className="w-full top-20  lg:top-5 lg:text-md  lg:-left-5 -left-56 mb-10 w-full max-w-xs md:max-w-full md:w-full rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+          <nav className="relative mx-auto mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-4 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
             <div className="pb-2 text-xl font-medium text-white">
               Sections
             </div>
@@ -17,7 +42,7 @@ const Cookies = () => {
             <div className="mt-4">
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-one' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-one"
                 >
                   What Are Cookies?
@@ -25,7 +50,7 @@ const Cookies = () => {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-two' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-two"
                 >
                   How We Use Cookies
@@ -33,7 +58,7 @@ const Cookies = () => {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-three' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-three"
                 >
                   Types of Cookies We Use
@@ -41,7 +66,7 @@ const Cookies = () => {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-four' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-four"
                 >
                   Managing Your Cookies Preferences
@@ -49,7 +74,7 @@ const Cookies = () => {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-five' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-five"
                 >
                   Changes to This Policy
@@ -57,7 +82,7 @@ const Cookies = () => {
               </div>
               <div className="relative mb-3">
                 <a
-                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
+                  className={`block mb-1 text-md font-bold text-white p-1 ${currentSection === 'section-six' ? 'border-l-4 border-primary-light' : 'hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-six"
                 >
                   Contact Us
@@ -66,7 +91,7 @@ const Cookies = () => {
             </div>
           </nav>
           {/* Main Content */}
-          <article className="text-LightGray mt-4 md:ml-0 lg:ml-64">
+          <article className="text-LightGray mt-4 lg:mt-0 lg:ml-64">
             <h2 className="mb-10 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
               <span className="text-primary-light">Cookies Policy</span>
             </h2>

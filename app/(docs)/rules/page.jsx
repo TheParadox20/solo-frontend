@@ -23,8 +23,9 @@ export default function Rules() {
   return (
     <>
       <div className="w-screen bg-primary-dark pt-5">
-        <main className="relative mx-auto px-10 md:max-w-screen-md">
-          <nav className="top-20 -left-56 mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+        <main className="relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          {/* Sidebar Navigation */}
+          <nav className="relative mx-auto mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-4 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
             <div className="pb-2 text-xl font-medium text-white">
               Sections
             </div>
@@ -80,8 +81,9 @@ export default function Rules() {
               </div>
             </div>
           </nav>
-          <article className="text-LightGray">
-            <h2 className="mb-10 mt-4 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
+          {/* Main Content */}
+          <article className="text-LightGray mt-4 lg:mt-0 lg:ml-64">
+            <h2 className="mb-10 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
               <span className="text-primary-light">Betting Rules</span>
             </h2>
             <p className="mb-10 text-LightGray">
