@@ -69,7 +69,7 @@ const Cookies = () => {
               <span className="text-primary-light">Cookies Policy</span>
             </h2>
             <p className="mb-10 text-LightGray">
-              This Cookies Policy explains how Solobet ("we", "us", or "our") uses cookies and similar technologies on our website.
+              This Cookies Policy explains how Solobet (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar technologies on our website.
             </p>
             <h2 id="section-one" className="mb-4 text-3xl font-bold">
               What Are Cookies?
@@ -108,7 +108,18 @@ const Cookies = () => {
               Contact Us
             </h2>
             <p className="mb-10 text-LightGray">
-              If you have any questions about our use of cookies, please contact us at [insert contact information].
+              If you have any questions about our use of cookies, please contact us at:
+            </p>
+            <ul className="mb-10 text-LightGray">
+              <li><strong>Phone:</strong> 0791210705</li>
+              <li><strong>Email:</strong> support@solo.co.ke</li>
+              <li><strong>Address:</strong> Solobet Limited, Kenya</li>
+            </ul>
+            <p className="text-LightGray">
+              Solobet Limited is licensed by BCLB (Betting Control and Licensing Board of Kenya) under the Betting, Lotteries and Gaming Act, Cap 131, Laws of Kenya under License Numbers: BK 0000123 and PG 0000123.
+            </p>
+            <p className="text-LightGray mt-5">
+              <strong>18+</strong> Must be 18 years or older to register or place bets at Solobet. Gamble responsibly to avoid potential adverse effects.
             </p>
           </article>
         </main>

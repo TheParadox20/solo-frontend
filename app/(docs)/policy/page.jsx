@@ -85,7 +85,7 @@ const Policy = () => {
               <span className="text-primary-light">Privacy Policy</span>
             </h2>
             <p className="mb-10 text-LightGray">
-              This Privacy Policy explains how Solobet ("we", "us", or "our") collects, uses, and shares your personal information when you visit or interact with our website.
+              This Privacy Policy explains how Solobet (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, and shares your personal information when you visit or interact with our website.
             </p>
             <h2 id="section-one" className="mb-4 text-3xl font-bold">
               Introduction

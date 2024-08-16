@@ -81,7 +81,7 @@ const FAQ = () => {
               What is Solobet?
             </h2>
             <p className="mb-10 text-LightGray">
-              Solobet is Kenya's first betting exchange. We offer an unmatched betting experience with instant payouts via M-Pesa. Join us today and experience the difference.
+              Solobet is Kenya&apos;s first betting exchange. We offer an unmatched betting experience with instant payouts via M-Pesa. Join us today and experience the difference.
             </p>
 
             <h2 id="faq-2" className="mb-4 text-3xl font-bold">

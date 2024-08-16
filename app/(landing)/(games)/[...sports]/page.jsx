@@ -14,14 +14,15 @@ export default function Page({params}) {
     return param.replaceAll('%20',' ')
   })
   let { data, error, isLoading, mutate } = useSWR(['/games',{path:path.join('/'),search}], fetcher);
+
   useEffect(()=>{
-    if(search.split(' ').length%3==0){
+    if(search.split(' ').length % 3 === 0){
       mutate()
     }
-  },[search])
+  },[search, mutate]) // Added `mutate` to the dependency array
 
   if(error) return <p>Error fetching games</p>
-  let games = data?.games
+  let games = data?.games;
   return (
     <div>
       <Search search={search} setSearch={setSearch}/>
@@ -33,7 +34,7 @@ export default function Page({params}) {
         </select>
       </div>
       {
-        isLoading?
+        isLoading ?
         <Spinner full={false}/>
         :
         games && Object.keys(games).map((date,i)=>{
