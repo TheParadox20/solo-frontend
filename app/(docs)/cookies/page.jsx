@@ -9,7 +9,7 @@ const Cookies = () => {
       <div className="w-screen bg-primary-dark pt-5">
         <main className="relative mx-auto px-10 md:max-w-screen-md">
           {/* Sidebar Navigation */}
-          <nav className="w-full max-w-xs md:max-w-full md:w-full rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+          <nav className="w-full top-20  lg:top-5 lg:text-md  lg:-left-5 -left-56 mb-10 w-full max-w-xs md:max-w-full md:w-full rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
             <div className="pb-2 text-xl font-medium text-white">
               Sections
             </div>
