@@ -96,7 +96,7 @@ export function MobileSideMenu(){
     let pathname = usePathname();
     return(
         <>
-        <div id="mobile_side_menu" className="block fixed z-40 top-0 md:top-24 right-0 w-[60vw] translate-x-[60vw] md:w-[20vw] md:translate-x-[60vw] md:h-[80vh] md:rounded-lg pt-4 h-[100vh] bg-primary-base md:hidden px-2 md:px-4">
+        <div id="mobile_side_menu" className="block fixed z-40 top-0 md:top-10 2xl:top-24 right-0 w-[60vw] translate-x-[60vw] md:w-[20vw] md:h-[80vh] md:overflow-y-scroll md:rounded-lg pt-4 h-[100vh] bg-primary-base md:hidden px-2 md:px-4 md:large-scroll">
             <button onClick={e=>hide('mobile_side_menu')} className="w-full text-right pr-4 mt-2 absolute"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
             <div className="my-8"></div>
             {
@@ -143,27 +143,26 @@ export function MobileSideMenu(){
                 }
             </div>
             
-            <div className="border-t-[1px] border-Grey p-2 absolute bottom-20 w-full">
+            
             {
                 (isLogged && !error && !isLoading) ?
-                <button onClick={e=>logout()} className="text-Error font-semibold flex items-center mt-3"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
+                <div className="border-t-[1px] border-Grey p-2 w-full">
+                    <button onClick={e=>logout()} className="text-Error font-semibold flex items-center mt-3"><span className="icon-[material-symbols-light--logout] w-7 h-7"/>Logout</button>
+                </div>
                 :
-                <div className="flex justify-around">
+                <div className="flex justify-around border-t-[1px] border-Grey p-2 absolute md:relative md:bottom-0 bottom-20 w-full">
                     <button onClick={e=>overlayE('/login')} className="w-24  py-3 text-center rounded-lg font-semibold hover:scale-105 border-2 border-primary-light" >Log In</button>
                     <button onClick={e=>overlayE('/signup')} className="w-24  py-3 text-center rounded-lg font-semibold hover:scale-105 bg-primary-light">Join Now</button>
                 </div>
                 
             }
-            </div>
         </div>
         <Overlay control={setOverlay} id={'deposit-withdraw-overlay'} className={`${overlay==''?'hidden':'block'}`}>
             {
                 (overlay == 'deposit' || overlay == 'withdraw') &&
-                <div className="bg-primary-base">
-                    <div className="flex">
-                        <h3 className="text-xl font-bold">Deposit/Withdraw</h3>
-                    </div>
-                    <div className="flex border-b-[1px] border-Grey">
+                <div className="bg-primary-base p-2 rounded-lg">
+                    <h3 className="text-xl font-bold my-2">Deposit/Withdraw</h3>
+                    <div className="flex gap-3 border-b-[1px] border-Grey">
                         <button className={`border-b-[1px] font-semibold ${overlay=='deposit'?'border-primary-light text-primary-light':'border-Grey'}`} onClick={e=>setOverlay('deposit')}>Deposit</button>
                         <button className={`border-b-[1px] font-semibold ${overlay=='withdraw'?'border-primary-light text-primary-light':'border-Grey'}`} onClick={e=>setOverlay('withdraw')}>Withdraw</button>
                     </div>
@@ -215,7 +214,7 @@ export function TopMenu(){
             <Overlay control={setOverlay} id={'deposit-overlay'} className={`${overlay==''?'hidden':'block'}`} >
                 {
                     (overlay == 'deposit' || overlay == 'withdraw') && 
-                    <div className="bg-primary-base">
+                    <div className="bg-primary-base p-3 rounded-lg">
                         <div className="flex">
                             <h3 className="text-xl font-bold">Deposit</h3>
                         </div>

@@ -28,6 +28,21 @@ export default function useUser () {
         },{phone,password},'/signin')
     }
 
+    let signUp = (name, phone, password, worker)=>{
+        postData((response)=>{
+            save('token',response.token)
+            if(response.token){
+                mutate({
+                    name: response.name,
+                    phone: response.phone,
+                    balance: response.balance
+                })
+                setIsLogged(true)
+            }
+            worker(response)
+        },{name,phone,password},'/signup')
+    }
+
     let updateBalance = (amount)=>{
         mutate({
             ...data,
@@ -45,6 +60,7 @@ export default function useUser () {
         isLoading,
         isError,
         login,
+        signUp,
         logout,
         updateBalance
     }

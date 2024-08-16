@@ -1,12 +1,14 @@
 'use client'
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Input from "../Input"
 import Logo from "./Logo"
-import { save } from "@/app/lib/storage";
-import { postData } from "@/app/lib/data"
+import { load } from "@/app/lib/storage";
+import useUser from "@/app/lib/hooks/useUser";
 import ConnectWallet from "@/app/UI/body/ConnectWallet";
+import { popupE } from "@/app/lib/trigger";
 
 export default function Signup({control}){
+    let {signUp} = useUser();
     let [name, setName] = useState('');
     let [phone, setPhone] = useState('');
     let [password, setPassword] = useState('');
@@ -14,10 +16,13 @@ export default function Signup({control}){
 
     let submit = (e)=>{
         e.preventDefault();
-        postData((response)=>{
-            save('token',response.token)
-            control('')
-        },{name,phone,password},'/signup')
+        if(password!=confirm){
+            popupE('Error','Passwords must match')
+            return
+        }
+        signUp(name,phone,password,(_)=>{
+            if(load('token')!=null) control('')
+        })
     }
 
     return(

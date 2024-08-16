@@ -90,14 +90,14 @@ export default function Betslip(){
             <h6 className="text-xl font-bold p-4">Betslip</h6>
             <div className="flex flex-col items-center mx-4 gap-3">
                 {
-                    !isLogged || isLoading || isError?
+                    !isLogged || isLoading || isError || betslip?.length==0?
                     <>
                     <div className="icon-[pepicons-pencil--ticket-circle-off] w-16 h-16"/>
                     <p className="text-center font-semibold text-lg">Your betslip is empty</p>
                     <p className="text-sm">Make a selection to add a bet to your betslip</p>
                     </>
                     :
-                    <div className="bg-primary-dark w-full rounded-lg max-h-[40vh] overflow-y-scroll pb-16 large-scroll">
+                    <div className="bg-primary-dark w-full rounded-lg max-h-[40vh] overflow-y-scroll pb-12 large-scroll">
                         {betslip.map((bet,i)=>(<Bet bet={bet} key={i}/>))}
                     </div>
                 }

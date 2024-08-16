@@ -56,7 +56,7 @@ export default function Carousel() {
 
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 4500); // Change slide every 5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [items.length, paused]);
