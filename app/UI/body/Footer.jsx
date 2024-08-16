@@ -17,11 +17,21 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row gap-y-6 gap-x-28 md:w-1/3">
           <div>
             <h6 className="mb-4 font-bold">Legal & Policy</h6>
-            <Link className="block text-sm mb-3" href={'/terms'}>Terms & Conditions</Link>
-            <Link className="block text-sm mb-3" href={'/policy'}>Privacy Policy</Link>
-            <Link className="block text-sm mb-3" href={'/cookies'}>Cookie Policy</Link>
-            <Link className="block text-sm mb-3" href={'/rules'}>Rules</Link>
-            <Link className="block text-sm mb-3" href={'/faq'}>FAQs</Link>
+            <Link className="block text-sm mb-3 transition-transform transform hover:text-primary-dark-blue hover:scale-105" href={'/terms'}>
+              Terms & Conditions
+            </Link>
+            <Link className="block text-sm mb-3 transition-transform transform hover:text-primary-dark-blue hover:scale-105" href={'/policy'}>
+              Privacy Policy
+            </Link>
+            <Link className="block text-sm mb-3 transition-transform transform hover:text-primary-dark-blue hover:scale-105" href={'/cookies'}>
+              Cookie Policy
+            </Link>
+            <Link className="block text-sm mb-3 transition-transform transform hover:text-primary-dark-blue hover:scale-105" href={'/rules'}>
+              Rules
+            </Link>
+            <Link className="block text-sm mb-3 transition-transform transform hover:text-primary-dark-blue hover:scale-105" href={'/faq'}>
+              FAQs
+            </Link>
           </div>
           <div>
             <h6 className="mb-4 font-bold">Contact Us</h6>
