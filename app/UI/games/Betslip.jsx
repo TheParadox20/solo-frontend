@@ -37,7 +37,7 @@ export function Time({start}){//start==hr:min:sec
     </div>
 }
 
-export function Bet({bet, key, control, ID}){
+export function Bet({bet, control, ID}){
     let textColour;
     switch(bet.status.name){
         case 'Pending':
@@ -50,7 +50,7 @@ export function Bet({bet, key, control, ID}){
             textColour = 'text-Error';
     }
     return(
-        <div key={key} className="w-full relative p-2 border-b-[1px] border-Grey">
+        <div className="w-full relative p-2 border-b-[1px] border-Grey">
             <button className="icon-[heroicons--ellipsis-vertical-solid] absolute right-0 w-6 h-6"/>
             <div className="flex gap-1 font-bold">
                 <div>{bet.homeTeam}</div>
@@ -110,7 +110,7 @@ export default function Betslip(){
                     </>
                     :
                     <div className="bg-primary-dark w-full rounded-lg max-h-[40vh] overflow-y-scroll pb-12 large-scroll">
-                        {betslip.map((bet,i)=>(<div onClick={e=>setId(bet.id)}><Bet bet={bet} key={i} control={setOverlay} ID={id}/></div>))}
+                        {betslip.map((bet,i)=>(<div key={i} onClick={e=>setId(bet.id)}><Bet bet={bet} control={setOverlay} ID={id}/></div>))}
                     </div>
                 }
             </div>
