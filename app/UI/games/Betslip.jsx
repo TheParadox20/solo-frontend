@@ -1,8 +1,11 @@
 'use client'
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import useBetslip from "@/app/lib/hooks/useBetslip";
 import { overlayE } from "@/app/lib/trigger";
+import EditBet from "./Edit";
+import DeleteBet from "./Delete";
+import Overlay from "../body/Overlay";
 
 export function Time({start}){//start==hr:min:sec
     let time = start.split(':');
@@ -34,7 +37,7 @@ export function Time({start}){//start==hr:min:sec
     </div>
 }
 
-export function Bet({bet, key}){
+export function Bet({bet, key, control, ID}){
     let textColour;
     switch(bet.status.name){
         case 'Pending':
@@ -77,6 +80,13 @@ export function Bet({bet, key}){
                     </>
                 }
             </div>
+            {
+                ID==bet.id &&
+                <div className={`bg-primary-dark absolute right-5 shadow-md w-1/3 p-2 rounded-lg shadow-Grey bottom-0`}>
+                    <button onClick={e=>control('edit')} className="block text-left p-1 w-full bg-primary-light rounded-md ">Edit</button>
+                    <button onClick={e=>control('delete')} className="block text-left p-1 w-full text-Error">Delete</button>
+                </div>
+            }
         </div>
     )
 }
@@ -84,6 +94,8 @@ export function Bet({bet, key}){
 export default function Betslip(){
     let {isLogged} = useContext(Context);
     let {betslip, isLoading, isError} = useBetslip();
+    let [overlay, setOverlay] = useState('');
+    let [id, setId] = useState(null);
 
     return(
         <div className="bg-primary-base relative h-[50vh] rounded-xl">
@@ -98,7 +110,7 @@ export default function Betslip(){
                     </>
                     :
                     <div className="bg-primary-dark w-full rounded-lg max-h-[40vh] overflow-y-scroll pb-12 large-scroll">
-                        {betslip.map((bet,i)=>(<Bet bet={bet} key={i}/>))}
+                        {betslip.map((bet,i)=>(<div onClick={e=>setId(bet.id)}><Bet bet={bet} key={i} control={setOverlay} ID={id}/></div>))}
                     </div>
                 }
             </div>
@@ -115,6 +127,10 @@ export default function Betslip(){
                 :
                 <button onClick={e=>overlayE('/login')} className="absolute block text-center bottom-0 w-full rounded-b-xl bg-primary-light py-4 font-semibold">Signup or Login To Bet</button>
             }
+            <Overlay control={setOverlay} id={'bet-actions'} className={`${overlay==''?'hidden':'block'}`}>
+                {overlay=='edit' && <EditBet id={id} control={setOverlay}/>}
+                {overlay=='delete' && <DeleteBet id={id} control={setOverlay}/>}
+            </Overlay>
         </div>
     )
 }
