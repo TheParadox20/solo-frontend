@@ -8,55 +8,55 @@ const Cookies = () => {
     <>
       <div className="w-screen bg-primary-dark pt-5">
         <main className="relative mx-auto px-10 md:max-w-screen-md">
-          <div className="top-20 -left-56 mb-10 w-full max-w-xs rounded-md border bg-primary-dark px-6 py-4 shadow-md lg:absolute lg:w-56">
-            <div className="pb-2 text-xl font-medium text-primary-light">
+          <div className="top-20 -left-56 mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+            <div className="pb-2 text-xl font-medium text-white">
               Sections
             </div>
             <hr className="h-1 w-10 bg-primary-light" />
             <div className="mt-4">
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
                   href="#section-one"
                 >
                   What Are Cookies?
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
                   href="#section-two"
                 >
                   How We Use Cookies
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
                   href="#section-three"
                 >
                   Types of Cookies We Use
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
                   href="#section-four"
                 >
                   Managing Your Cookies Preferences
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
                   href="#section-five"
                 >
                   Changes to This Policy
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className="block mb-1 text-md font-bold text-white p-1 hover:text-primary-light hover:border-l-4 hover:border-primary-light transition duration-300 ease-in-out"
                   href="#section-six"
                 >
                   Contact Us
@@ -71,19 +71,19 @@ const Cookies = () => {
             <p className="mb-10 text-LightGray">
               This Cookies Policy explains how Solobet (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar technologies on our website.
             </p>
-            <h2 id="section-one" className="mb-4 text-3xl font-bold">
+            <h2 id="section-one" className="mb-4 text-3xl text-primary-light font-bold">
               What Are Cookies?
             </h2>
             <p className="mb-10 text-LightGray">
               Cookies are small text files that are stored on your device (computer, tablet, or mobile) when you visit a website. They help the site recognize your device on future visits, enabling certain features and improving your user experience.
             </p>
-            <h2 id="section-two" className="mb-4 text-3xl font-bold">
+            <h2 id="section-two" className="mb-4 text-3xl text-primary-light font-bold">
               How We Use Cookies
             </h2>
             <p className="mb-10 text-LightGray">
               We use cookies to enhance your experience on Solobet by remembering your preferences, keeping you logged in, and collecting analytical data. These cookies help us to provide you with a better and more personalized service.
             </p>
-            <h2 id="section-three" className="mb-4 text-3xl font-bold">
+            <h2 id="section-three" className="mb-4 text-3xl text-primary-light font-bold">
               Types of Cookies We Use
             </h2>
             <ul className="list-disc mb-10 text-LightGray">
@@ -92,19 +92,19 @@ const Cookies = () => {
               <li><strong>Functional Cookies:</strong> These cookies enable the website to provide enhanced functionality and personalization.</li>
               <li><strong>Targeting Cookies:</strong> These cookies may be set through our site by our advertising partners to build a profile of your interests and show you relevant ads on other sites.</li>
             </ul>
-            <h2 id="section-four" className="mb-4 text-3xl font-bold">
+            <h2 id="section-four" className="mb-4 text-3xl text-primary-light font-bold">
               Managing Your Cookies Preferences
             </h2>
             <p className="mb-10 text-LightGray">
               You can control and manage cookies through your browser settings. Most browsers allow you to refuse or delete cookies, but this may impact your ability to use certain features of the site.
             </p>
-            <h2 id="section-five" className="mb-4 text-3xl font-bold">
+            <h2 id="section-five" className="mb-4 text-3xl text-primary-light font-bold">
               Changes to This Policy
             </h2>
             <p className="mb-10 text-LightGray">
               We may update this Cookies Policy from time to time. We encourage you to review this page periodically to stay informed about how we are using cookies.
             </p>
-            <h2 id="section-six" className="mb-4 text-3xl font-bold">
+            <h2 id="section-six" className="mb-4 text-3xl text-primary-light font-bold">
               Contact Us
             </h2>
             <p className="mb-10 text-LightGray">
