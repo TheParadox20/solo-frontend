@@ -8,7 +8,8 @@ const Cookies = () => {
     <>
       <div className="w-screen bg-primary-dark pt-5">
         <main className="relative mx-auto px-10 md:max-w-screen-md">
-          <div className="top-20 -left-56 mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+          {/* Sidebar Navigation */}
+          <nav className="w-full max-w-xs md:max-w-full md:w-full rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
             <div className="pb-2 text-xl font-medium text-white">
               Sections
             </div>
@@ -63,9 +64,10 @@ const Cookies = () => {
                 </a>
               </div>
             </div>
-          </div>
-          <article className="text-LightGray">
-            <h2 className="mb-10 mt-4 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
+          </nav>
+          {/* Main Content */}
+          <article className="text-LightGray mt-4 md:ml-0 lg:ml-64">
+            <h2 className="mb-10 text-4xl font-bold leading-snug lg:text-5xl lg:leading-snug">
               <span className="text-primary-light">Cookies Policy</span>
             </h2>
             <p className="mb-10 text-LightGray">
@@ -86,7 +88,7 @@ const Cookies = () => {
             <h2 id="section-three" className="mb-4 text-3xl text-primary-light font-bold">
               Types of Cookies We Use
             </h2>
-            <ul className="list-disc mb-10 text-LightGray">
+            <ul className="list-disc mb-10 text-LightGray pl-5">
               <li><strong>Essential Cookies:</strong> These cookies are necessary for the website to function and cannot be switched off in our systems.</li>
               <li><strong>Performance Cookies:</strong> These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site.</li>
               <li><strong>Functional Cookies:</strong> These cookies enable the website to provide enhanced functionality and personalization.</li>
@@ -110,7 +112,7 @@ const Cookies = () => {
             <p className="mb-10 text-LightGray">
               If you have any questions about our use of cookies, please contact us at:
             </p>
-            <ul className="mb-10 text-LightGray">
+            <ul className="mb-10 text-LightGray pl-5">
               <li><strong>Phone:</strong> 0791210705</li>
               <li><strong>Email:</strong> support@solo.co.ke</li>
               <li><strong>Address:</strong> Solobet Limited, Kenya</li>
