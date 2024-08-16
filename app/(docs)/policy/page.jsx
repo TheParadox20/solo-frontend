@@ -1,78 +1,104 @@
-import React from "react";
+"use client"; // Add this line to mark the component as a client component
+
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
 const Policy = () => {
+  const [currentSection, setCurrentSection] = useState('section-one');
+
+  useEffect(() => {
+    // Function to get current section ID from URL
+    const getCurrentSection = () => {
+      if (typeof window !== 'undefined') {
+        const id = window.location.hash.slice(1);
+        setCurrentSection(id || 'section-one'); // Default to 'section-one' if no hash is present
+      }
+    };
+
+    // Update current section on mount
+    getCurrentSection();
+
+    // Add event listener for hash changes
+    window.addEventListener('hashchange', getCurrentSection);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener('hashchange', getCurrentSection);
+    };
+  }, []);
+
   return (
     <>
       <div className="w-screen bg-primary-dark pt-5">
         <main className="relative mx-auto px-10 md:max-w-screen-md">
-          <div className="top-20 -left-56 mb-10 w-full max-w-xs rounded-md border bg-primary-dark px-6 py-4 shadow-md lg:absolute lg:w-56">
+        <div className="top-20 -left-56 mb-10 w-full max-w-xs rounded-lg bg-[#103E47] text-white px-6 py-3 mt-2 shadow-md lg:absolute lg:w-56 lg:top-20" style={{ borderRadius: '17px' }}>
+
             <div className="pb-2 text-xl font-medium text-primary-light">
               Sections
             </div>
             <hr className="h-1 w-10 bg-primary-light" />
             <div className="mt-4">
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-one' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-one"
                 >
                   Introduction
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-two' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-two"
                 >
                   Information We Collect
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-three' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-three"
                 >
                   How We Use Your Information
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-four' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-four"
                 >
                   Sharing Your Information
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-five' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-five"
                 >
                   Security of Your Information
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-six' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-six"
                 >
                   Your Rights
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-seven' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-seven"
                 >
                   Changes to This Policy
                 </a>
               </div>
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <a
-                  className="mb-1 text-sm font-medium text-primary-light hover:text-primary-light"
+                  className={`block mb-1 text-sm font-medium ${currentSection === 'section-eight' ? 'text-primary-light border-l-4 border-primary-light' : 'text-white hover:text-primary-light hover:border-l-4 hover:border-primary-light'} transition duration-300 ease-in-out`}
                   href="#section-eight"
                 >
                   Contact Us
