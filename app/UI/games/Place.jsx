@@ -6,6 +6,7 @@ import { nowYouDont } from "@/app/lib/controlls";
 import { overlayE } from "@/app/lib/trigger";
 import { postData } from "@/app/lib/data";
 import useUser from "@/app/lib/hooks/useUser";
+import useBetslip from "@/app/lib/hooks/useBetslip";
 
 export default function Place(){
     let defaultStake = 20;
@@ -22,6 +23,7 @@ export default function Place(){
     let idRef = useRef(0);
     let {isLogged} = useContext(Context);
     let {updateBalance} = useUser();
+    let {mutate} = useBetslip();
 
     useEffect(()=>{
         window.addEventListener('place', e=>handler(e))
@@ -54,7 +56,10 @@ export default function Place(){
     let place = e=>{
         console.log(`Placing bet on ${idRef.current} amount ${amount} choice ${outcomeRef.current}`)
         postData((response)=>{
-            if(response.message) updateBalance(-amount)
+            if(response.message){
+                updateBalance(-amount)
+                mutate()
+            }
         },{
             game: idRef.current,
             amount,

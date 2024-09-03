@@ -14,6 +14,7 @@
 
 input:focus, textarea:focus{
   outline: none;
+  background: transparent;
 }
 input{
   background: none;

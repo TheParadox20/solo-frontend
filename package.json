@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.8.7",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",

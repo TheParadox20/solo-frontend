@@ -28,8 +28,9 @@ export default function Page({params}) {
       <Breadcrumb path={path} />
       <div className="flex justify-between items-center">
         <Categories path={path} categories={data?.categories} />
-        <select className="border-primary-light/50 border-2 rounded-lg px-3 h-12 font-semibold w-32" name="market" id="">
+        <select className="border-primary-light/50 border-2 rounded-lg px-3 h-12 font-semibold w-32" value={""} name="market" id="">
           <option value="">Markets</option>
+          <option className="bg-primary-light" value="3 Way">3 Way</option>
         </select>
       </div>
       {

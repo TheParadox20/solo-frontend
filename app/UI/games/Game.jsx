@@ -20,7 +20,7 @@ export default function Game({data}){
         })
     }
     return(
-        <div className="border-b-[1px] border-Grey py-2">
+        <div className="border-b-[1px] border-Grey py-2 overflow-hidden">
             <div className="hidden  md:flex gap-4 mb-1 text-sm lg:text-xs 2xl:text-sm">
                 <div className="">{data.time}</div>
                 <div className="">{data.date}</div>
