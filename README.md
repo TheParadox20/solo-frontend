@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Solobet 🎲
 
-## Getting Started
+Welcome to Solobet, Kenya's first betting exchange offering an unmatched betting experience with instant payouts 🚀 via M-Pesa💸.  
 
-First, run the development server:
+## Table of Contents 📑
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Project Overview](#project-overview) 📊
+- [Features](#features) ✨
+- [Installation](#installation) 🛠️
+- [Usage](#usage) 🏅
+- [Contact Us](#contact-us) 📞
+- [License](#license) 📜
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Overview 📊
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Solobet is a cutting-edge betting platform designed to provide users with an efficient and enjoyable betting experience. 🎉 The platform features a modern user interface and robust backend to handle bets, payouts, and user management seamlessly. 🖥️
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features ✨
 
-## Learn More
+- **Instant Payouts** 💸: Enjoy instant payouts via M-Pesa.
+- **User-Friendly Interface** 🌟: A responsive and intuitive interface for easy navigation.
+- **Secure Transactions** 🔒: High-level security measures to protect user data and transactions.
+- **Comprehensive Support** 🤝: Accessible support to assist users with any issues or queries.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation 🛠️
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run Solobet locally, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Clone the Repository**:
+    ```bash
+    git clone https://github.com/yourusername/solobet.git
+    ```
 
-## Deploy on Vercel
+2. **Navigate to the Project Directory**:
+    ```bash
+    cd solobet
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Install Dependencies**:
+    If you’re using `npm`:
+    ```bash
+    npm install
+    ```
+    If you’re using `yarn`(`recommended`):
+    ```bash
+    yarn install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Start the Development Server**:
+    ```bash
+    npm start
+    ```
+    or
+    ```bash
+    yarn start
+    ```
+
+5. **Visit the Application**:
+    Open your browser and go to `http://localhost:3000` to view the application. 🌐
+
+## Usage 🏅
+
+To place a bet on Solobet:
+
+1. **Register or Log In** 📝: Create an account or log in to your existing account.
+2. **Place a Bet** 🎯: Navigate to the betting section, select your desired event, and place your bet.
+3. **Manage Bets** 📊: View your active bets and manage your account settings as needed.
+
+## Contact Us 📞
+
+If you have any questions or need assistance, please contact us:
+
+- **Phone** 📞: 0791210705
+- **Email** 📧: support@solo.co.ke
+- **Address** 🏢: Solobet Limited, Kenya
+
+## License 📜
+
+Solobet Limited is licensed by the BCLB (Betting Control and Licensing Board of Kenya) under the Betting, Lotteries and Gaming Act, Cap 131, Laws of Kenya under License Numbers: BK 0000123 and PG 0000123.
+
+**18+**: Must be 18 years or older to register or place bets at Solobet. Gamble responsibly to avoid potential adverse effects. 🎉
+
+© Copyright 2024 Solobet | All rights reserved 🎉
+
+---

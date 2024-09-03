@@ -9,11 +9,7 @@ export let Context = createContext();
 
 export default function ContextProvider({ children }) {
     let [isLogged, setIsLogged] = useState(false);
-    let { data, error, isLoading } = useSWR(['/menu',{}], fetcher,{
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
-        revalidateOnMount: true
-    });
+    let { data, error, isLoading } = useSWR(['/menu',{}], fetcher);
     if(isLoading) return <Spinner full={true}/>
     let Popular;
     let Sports;
