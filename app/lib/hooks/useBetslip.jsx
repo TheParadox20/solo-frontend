@@ -1,11 +1,11 @@
-'use client'
+'use client';
 import { useEffect, useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import useSWR from "swr";
 import { fetcher } from "@/app/lib/data";
 
 export default function useBetslip() {
-    let { setIsLogged } = useContext(Context);
+    const { isLogged, setIsLogged } = useContext(Context);
     const { data, isError, isLoading, mutate } = useSWR(['/betslip', {}], fetcher);
 
     useEffect(() => {
@@ -13,19 +13,20 @@ export default function useBetslip() {
             setIsLogged(true);
         }
         console.log('User >> ', data);
-    }, [data, isError, isLoading, setIsLogged]); // Add dependencies here
-export default function useBetslip () {
-    let {isLogged} = useContext(Context);
-    const { data, isError, isLoading, mutate } = useSWR(['/betslip',{}], fetcher)
-    useEffect(()=>{
-        if(isLogged) mutate()
-        else mutate([])
-    },[isLogged])
+    }, [data, isError, isLoading, setIsLogged]);
+
+    useEffect(() => {
+        if (isLogged) {
+            mutate();
+        } else {
+            mutate([]);
+        }
+    }, [isLogged, mutate]);
 
     return {
-        betslip: (isLoading || isError)?{}:data,
+        betslip: isLoading || isError ? {} : data,
         isLoading,
         isError,
         mutate
-    }
+    };
 }
