@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useContext } from "react";
 import { Context } from "@/app/lib/ContextProvider";
 import useSWR from "swr";
@@ -6,22 +6,22 @@ import { fetcher, postData } from "@/app/lib/data";
 import { save, remove } from "@/app/lib/storage";
 
 export default function useUser() {
-    let { setIsLogged } = useContext(Context);
+    const { setIsLogged } = useContext(Context);
     const { data, isError, isLoading, mutate } = useSWR(['/user', {}], fetcher);
 
-    let logout = () => {
+    const logout = () => {
         remove('token');
         setIsLogged(false);
     };
 
-    let login = (phone, password, worker) => {
+    const login = (phone, password, worker) => {
         postData((response) => {
             save('token', response.token);
             if (response.token) {
                 mutate({
                     name: response.name,
                     phone: response.phone,
-                    balance: response.balance
+                    balance: response.balance,
                 });
                 setIsLogged(true);
             }
@@ -29,29 +29,25 @@ export default function useUser() {
         }, { phone, password }, '/signin');
     };
 
-<<<<<<< HEAD
-    let signUp = (name, phone, password, worker)=>{
-        postData((response)=>{
-            save('token',response.token)
-            if(response.token){
+    const signUp = (name, phone, password, worker) => {
+        postData((response) => {
+            save('token', response.token);
+            if (response.token) {
                 mutate({
                     name: response.name,
                     phone: response.phone,
-                    balance: response.balance
-                })
-                setIsLogged(true)
+                    balance: response.balance,
+                });
+                setIsLogged(true);
             }
-            worker(response)
-        },{name,phone,password},'/signup')
-    }
+            worker(response);
+        }, { name, phone, password }, '/signup');
+    };
 
-    let updateBalance = (amount)=>{
-=======
-    let updateBalance = (amount) => {
->>>>>>> 4fdbc57e2097a972c36075258c889f423a6d8710
+    const updateBalance = (amount) => {
         mutate({
             ...data,
-            balance: data.balance + amount
+            balance: data.balance + amount,
         });
     };
 
@@ -60,15 +56,15 @@ export default function useUser() {
             setIsLogged(true);
         }
         console.log('User >> ', data);
-    }, [data, isError, isLoading, setIsLogged]); // Add dependencies here
+    }, [data, isError, isLoading, setIsLogged]);
 
     return {
-        user: (isLoading || isError) ? {} : data,
+        user: isLoading || isError ? {} : data,
         isLoading,
         isError,
         login,
         signUp,
         logout,
-        updateBalance
-    }
+        updateBalance,
+    };
 }
